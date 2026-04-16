@@ -11,10 +11,12 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -28,15 +30,26 @@ fun HeaderSection() {
     ) {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Default.LocationOn, contentDescription = null)
+            Icon(
+                Icons.Default.LocationOn,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.background
+            )
             Spacer(modifier = Modifier.width(8.dp))
             Text("Kirim ke: Gedung Rektorat UNS")
         }
 
         Row {
-            Icon(Icons.Default.Notifications, contentDescription = null)
+            Icon(
+                Icons.Default.Notifications,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.background
+            )
             Spacer(modifier = Modifier.width(12.dp))
-            Icon(Icons.Default.Person, contentDescription = null)
+            Icon(
+                Icons.Default.Person,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.background)
         }
     }
 }

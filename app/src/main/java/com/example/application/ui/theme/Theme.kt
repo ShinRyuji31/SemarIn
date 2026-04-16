@@ -20,6 +20,7 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     primary = BluePrimary,
     secondary = BlueSecondary,
+    tertiary = WhiteSoft,
     background = WhiteSoft
 
 

@@ -1,37 +1,37 @@
 package com.example.application.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.application.ui.component.ButtonBlue
-import com.example.application.ui.component.ButtonWhite
-import com.example.application.ui.theme.ApplicationTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.example.application.ui.component.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
+
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = blueWhiteGradient()
-            )
+            .background(brush = blueWhiteGradient())
     ) {
 
-        // CARD
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -44,43 +44,42 @@ fun LoginScreen() {
                 .padding(24.dp)
         ) {
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                // TITLE
                 Text(
                     text = "Login",
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 24.dp)
+                    fontWeight = FontWeight.Bold
                 )
 
-                // USERNAME
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
-                    placeholder = { Text("Username") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 16.dp)
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // 🔥 USERNAME
+                TextFieldOutlineRegular(
+                    value = username,
+                    onValueChange = { username = it },
+                    placeholder = "Username"
                 )
 
-                // PASSWORD
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
-                    placeholder = { Text("Password") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 24.dp)
+                // 🔥 PASSWORD
+                TextFieldOutlineRegular(
+                    value = password,
+                    onValueChange = { password = it },
+                    placeholder = "Password",
+                    isPassword = true
                 )
 
-                // LOGIN BUTTON
+                Spacer(modifier = Modifier.height(16.dp))
+
                 ButtonBlue(
                     text = "Login",
-                    onClick = {},
+                    onClick = {
+                        if (username.isNotEmpty() && password.isNotEmpty()) {
+                            navController.navigate("dashboard") {
+                                popUpTo("landing") { inclusive = true }
+                            }
+                        }
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp)
@@ -88,52 +87,13 @@ fun LoginScreen() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // OR TEXT
-                Text(
-                    text = "or login with",
-                    fontSize = 12.sp,
-                    modifier = Modifier.padding(bottom = 12.dp)
-                )
-
-                // SOCIAL BUTTON
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-
-                    ButtonWhite(
-                        text = "G",
-                        onClick = {},
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(45.dp)
-                    )
-
-                    ButtonBlue(
-                        text = "f",
-                        onClick = {},
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(45.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // SIGN UP
                 Text(
                     text = "Don’t have an account? Sign Up",
-                    fontSize = 12.sp
+                    modifier = Modifier.clickable {
+                        navController.navigate("signup")
+                    }
                 )
             }
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun loginPreview (){
-//    ApplicationTheme() {
-//        LoginScreen()
-//    }
-//}

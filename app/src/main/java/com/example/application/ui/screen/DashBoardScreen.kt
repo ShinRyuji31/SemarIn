@@ -1,31 +1,35 @@
 package com.example.application.ui.screen
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.application.ui.component.dashboard.BannerSection
-import com.example.application.ui.component.dashboard.BottomNavBar
-import com.example.application.ui.component.dashboard.HeaderSection
-import com.example.application.ui.component.dashboard.LastOrderSection
-import com.example.application.ui.component.dashboard.PromoSection
-import com.example.application.ui.component.dashboard.RestoSection
-import com.example.application.ui.component.dashboard.SearchSection
-import com.example.application.ui.component.dashboard.ServiceMenu
-import com.example.application.ui.theme.ApplicationTheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.example.application.ui.component.dashboard.*
 
 @Composable
 fun DashboardScreen() {
 
+    val scrollState = rememberScrollState()
+
+    val isScrolled = scrollState.value > 50
+
+    val headerHeight by animateDpAsState(
+        targetValue = if (isScrolled) 70.dp else 110.dp,
+        label = ""
+    )
+
     Scaffold(
+        containerColor = Color.Transparent,
         bottomBar = { BottomNavBar() }
     ) { padding ->
 
@@ -41,24 +45,41 @@ fun DashboardScreen() {
                         )
                     )
                 )
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scrollState)
         ) {
 
-            HeaderSection()
-            SearchSection()
-            ServiceMenu()
-            PromoSection()
-            RestoSection()
-            LastOrderSection()
-            BannerSection()
-        }
-    }
-}
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(headerHeight)
+            ) {
+                HeaderSection()
+            }
 
-@Preview(showBackground = true)
-@Composable
-fun DashBoardPreview (){
-    ApplicationTheme() {
-        DashboardScreen()
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(y = (-20).dp)
+                    .shadow(
+                        8.dp,
+                        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                    )
+                    .background(
+                        color = MaterialTheme.colorScheme.background,
+                        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                    )
+                    .padding(top = 16.dp)
+            ) {
+
+                SearchSection()
+                ServiceMenu()
+                PromoSection()
+                RestoSection()
+                LastOrderSection()
+                BannerSection()
+
+                Spacer(modifier = Modifier.height(80.dp)) // biar nggak ketutup navbar
+            }
+        }
     }
 }

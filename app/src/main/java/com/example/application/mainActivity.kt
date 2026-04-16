@@ -7,6 +7,8 @@ import com.example.application.ui.theme.ApplicationTheme
 import androidx.navigation.compose.*
 import com.example.application.ui.screen.DashboardScreen
 import com.example.application.ui.screen.LandingScreen
+import com.example.application.ui.screen.LoginScreen
+import com.example.application.ui.screen.SignUpScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +25,14 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("landing") {
                         LandingScreen(navController)
+                    }
+
+                    composable("login") {
+                        LoginScreen(navController)
+                    }
+
+                    composable("signup") {
+                        SignUpScreen(navController)
                     }
 
                     composable("dashboard") {

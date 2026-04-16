@@ -28,7 +28,6 @@ fun LandingScreen(navController: NavController) {
             .background(Color.White)
     ) {
 
-        // 🔵 TOP SECTION (Gradient Background)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -39,7 +38,6 @@ fun LandingScreen(navController: NavController) {
                 )
         {
 
-            // 🚚 IMAGE DELIVERY
             Image(
                 painter = painterResource(R.drawable.landing_delivery),
                 contentDescription = null,
@@ -51,7 +49,6 @@ fun LandingScreen(navController: NavController) {
                     .padding(bottom = 40.dp)
             )
 
-            // 🌊 CURVE
             Image(
                 painter = painterResource(R.drawable.landing_bg_curve),
                 contentDescription = null,
@@ -63,7 +60,6 @@ fun LandingScreen(navController: NavController) {
             )
         }
 
-        // ⚪ BOTTOM CARD CONTENT
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -100,18 +96,20 @@ fun LandingScreen(navController: NavController) {
                 ButtonBlue(
                     text = "Login",
                     onClick = {
-                        navController.navigate("dashboard")
+                        navController.navigate("login")
                     },
                     modifier = Modifier
                         .width(200.dp)
                         .height(50.dp)
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 ButtonWhite(
                     text = "Sign Up",
-                    onClick = {},
+                    onClick = {
+                        navController.navigate("signup")
+                    },
                     modifier = Modifier
                         .width(200.dp)
                         .height(50.dp)
@@ -120,11 +118,3 @@ fun LandingScreen(navController: NavController) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun LandingPreview() {
-//    ApplicationTheme {
-//        LandingScreen()
-//    }
-//}
