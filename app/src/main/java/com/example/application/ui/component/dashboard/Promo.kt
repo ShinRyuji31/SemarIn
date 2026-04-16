@@ -1,32 +1,47 @@
 package com.example.application.ui.component.dashboard
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.application.R
 
 @Composable
 fun PromoSection() {
-    Column(modifier = Modifier.padding(16.dp)) {
 
-        Text("Semar Promo Cek!!", fontWeight = FontWeight.Bold)
+    val promos = List(5) { R.drawable.banner_promo }
+
+    Column(modifier = Modifier.padding(8.dp)) {
+
+        Text(
+            "Semar Promo Cek!!",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
 
         LazyRow {
-            items(5) {
-                Box(
+            items(promos) { promo ->
+
+                Image(
+                    painter = painterResource(id = promo),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .padding(8.dp)
-                        .size(200.dp, 100.dp)
-                        .background(Color.Yellow, RoundedCornerShape(16.dp))
+                        .size(220.dp, 120.dp)
+                        .clip(RoundedCornerShape(16.dp))
                 )
             }
         }
