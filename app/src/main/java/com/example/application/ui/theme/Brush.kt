@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Brush
 @Composable
 fun blueWhiteGradient() = Brush.verticalGradient(
     listOf(
-        MaterialTheme.colorScheme.primary,
-        MaterialTheme.colorScheme.background
+        BluePrimary,
+        WhiteSoft
     )
 )

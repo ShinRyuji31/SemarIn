@@ -17,7 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.application.R
 
 @Composable
@@ -35,17 +37,72 @@ fun BannerSection() {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp)
                     .padding(bottom = 12.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
 
-                Image(
-                    painter = painterResource(banner),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
+                Column {
+
+                    // 🔥 IMAGE + TEXT OVERLAY
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(160.dp)
+                    ) {
+
+                        Image(
+                            painter = painterResource(banner),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+
+                        // 🔥 overlay biar text kebaca
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    androidx.compose.ui.graphics.Brush.verticalGradient(
+                                        listOf(
+                                            Color.Transparent,
+                                            Color.Black.copy(alpha = 0.5f)
+                                        )
+                                    )
+                                )
+                        )
+
+                        Text(
+                            text = "Semar Ride\nLagi Disini",
+                            color = Color.White,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .align(Alignment.BottomStart)
+                                .padding(12.dp)
+                        )
+                    }
+
+                    // 🔽 DESKRIPSI BAGIAN BAWAH
+                    Column(
+                        modifier = Modifier
+                            .background(Color(0xFFF5F5F5))
+                            .padding(12.dp)
+                    ) {
+
+                        Text(
+                            text = "Anjem-In Lagi Disini",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
+                        )
+
+                        Text(
+                            text = "Saya akan kembali ke Solo sebagai rakyat biasa Saya akan kembali ke Solo sebagai rakyat biasa...",
+                            fontSize = 12.sp,
+                            color = Color.Gray,
+                            maxLines = 2
+                        )
+                    }
+                }
             }
         }
     }

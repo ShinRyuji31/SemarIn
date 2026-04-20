@@ -24,10 +24,10 @@ fun ServiceMenu() {
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        ServiceCard("Antar-in", R.drawable.bike_icon)
-        ServiceCard("Jajan-in", R.drawable.cutlery_icon)
-        ServiceCard("Jastip-in", R.drawable.bag_icon)
-        ServiceCard("All", R.drawable.all_icon)
+        ServiceCard("Antar-in", R.drawable.ic_bike)
+        ServiceCard("Jajan-in", R.drawable.ic_cutlery)
+        ServiceCard("Jastip-in", R.drawable.ic_bag)
+        ServiceCard("All", R.drawable.ic_all)
     }
 }
 

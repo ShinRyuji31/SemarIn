@@ -1,0 +1,148 @@
+package com.example.application.ui.screen
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.application.R
+import com.example.application.ui.component.dashboard.BottomNavBar
+import com.example.application.ui.component.ProfileItem
+import com.example.application.ui.theme.BluePrimary
+import com.example.application.ui.theme.BlueSecondary
+import com.example.application.ui.theme.blueWhiteGradient
+
+@Composable
+fun ProfileScreen(navController: NavController) {
+
+    Scaffold(
+        bottomBar = {
+            BottomNavBar(navController)
+        }
+    ) { padding ->
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(brush = blueWhiteGradient())
+                .padding(padding)
+        ) {
+
+            // 🔵 HEADER
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            listOf(
+                                BluePrimary,
+                                BlueSecondary
+                            )
+                        )
+                    )
+            ) {
+
+                // 🔙 BACK BUTTON
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(Color.White)
+                        .clickable { navController.popBackStack() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_leftarrow),
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                }
+
+                Column(
+                    modifier = Modifier.align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    // 👤 PROFILE IMAGE
+                    Box(
+                        modifier = Modifier
+                            .size(110.dp)
+                            .clip(CircleShape)
+                            .background(Color.White)
+                            .padding(4.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_profile),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(CircleShape),
+                            tint = Color.Unspecified
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text("Stan Marsh", color = Color.White, fontSize = 18.sp)
+
+                    Text(
+                        "+62-8123-4567-890",
+                        color = Color.White.copy(alpha = 0.8f),
+                        fontSize = 12.sp
+                    )
+
+                    Text(
+                        "Edit Profile",
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        modifier = Modifier.clickable { }
+                    )
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(y = (-30).dp)
+                    .padding(horizontal = 16.dp)
+                    .background(
+                        Color.White,
+                        shape = RoundedCornerShape(24.dp)
+                    )
+                    .border(
+                        1.dp,
+                        Color(0xFFE0E0E0),
+                        RoundedCornerShape(24.dp)
+                    )
+                    .padding(vertical = 16.dp)
+            ) {
+
+                Column {
+
+                    ProfileItem("Full Profile", R.drawable.ic_profile)
+                    ProfileItem("Order History", R.drawable.ic_history)
+                    ProfileItem("Support & Help", R.drawable.ic_help)
+                    ProfileItem("Privacy Policy", R.drawable.ic_privacy)
+                    ProfileItem("Terms of Use", R.drawable.ic_termsofuse)
+                    ProfileItem("Log Out", R.drawable.ic_logout)
+                }
+            }
+        }
+    }
+}

@@ -25,10 +25,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.application.R
 
 @Composable
-fun BottomNavBar() {
+fun BottomNavBar(navController: NavController) {
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -40,10 +41,17 @@ fun BottomNavBar() {
     )
 
     val icons = listOf(
-        R.drawable.home_icon,
-        R.drawable.order_status_icon,
-        R.drawable.order_status_icon,
-        R.drawable.profile_icon
+        R.drawable.ic_home,
+        R.drawable.ic_orderstatus,
+        R.drawable.ic_history,
+        R.drawable.ic_profile
+    )
+
+    val routes = listOf(
+        "dashboard",
+        "order_status",
+        "order_history",
+        "profile"
     )
 
     NavigationBar(
@@ -57,13 +65,16 @@ fun BottomNavBar() {
 
             NavigationBarItem(
                 selected = isSelected,
-                onClick = { selectedIndex = index },
+                onClick = {
+                    selectedIndex = index
+                    navController.navigate(routes[index]) {
+                        launchSingleTop = true
+                    }
+                },
                 icon = {
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-
                         Icon(
                             painter = painterResource(id = icons[index]),
                             contentDescription = label,
@@ -80,7 +91,6 @@ fun BottomNavBar() {
                                 MaterialTheme.colorScheme.primary
                             else Color.Black
                         )
-
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(

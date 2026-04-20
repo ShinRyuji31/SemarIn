@@ -71,7 +71,7 @@ fun LoginScreen(navController: NavController) {
                     fontSize = 15.sp
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(2.dp))
 
                 TextFieldOutlineRegular(
                     value = username,
@@ -89,7 +89,7 @@ fun LoginScreen(navController: NavController) {
                     fontSize = 15.sp
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(2.dp))
 
                 TextFieldOutlineRegular(
                     value = password,

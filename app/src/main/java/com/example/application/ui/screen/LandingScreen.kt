@@ -63,7 +63,7 @@ fun LandingScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp)
+                .height(400.dp)
                 .align(Alignment.BottomCenter)
                 .background(MaterialTheme.colorScheme.background)
         ) {

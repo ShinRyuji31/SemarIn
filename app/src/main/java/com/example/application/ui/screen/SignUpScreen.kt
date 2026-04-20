@@ -28,6 +28,7 @@ import com.example.application.ui.theme.blueWhiteGradient
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.example.application.R
 import com.example.application.ui.component.ButtonSocial
 
@@ -62,17 +63,48 @@ fun SignUpScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(24.dp))
 
+                Text(
+                    text = "Username",
+                    modifier = Modifier.fillMaxWidth(),
+                    fontWeight = Bold,
+                    fontSize = 15.sp
+                )
+
+                Spacer(modifier = Modifier.height(2.dp))
+
                 TextFieldOutlineRegular(
                     value = username,
                     onValueChange = { username = it },
                     placeholder = "Username"
                 )
 
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = "Password",
+                    modifier = Modifier.fillMaxWidth(),
+                    fontWeight = Bold,
+                    fontSize = 15.sp
+                )
+
+                Spacer(modifier = Modifier.height(2.dp))
+
                 TextFieldOutlineRegular(
                     value = password,
                     onValueChange = { password = it },
                     placeholder = "Password"
                 )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = "Confirm Password",
+                    modifier = Modifier.fillMaxWidth(),
+                    fontWeight = Bold,
+                    fontSize = 15.sp
+                )
+
+                Spacer(modifier = Modifier.height(2.dp))
 
                 TextFieldOutlineRegular(
                     value = confirm,
@@ -104,8 +136,8 @@ fun SignUpScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    ButtonSocial(icon = R.drawable.star_icon)
-                    ButtonSocial(icon = R.drawable.star_icon)
+                    ButtonSocial(icon = R.drawable.logo_google)
+                    ButtonSocial(icon = R.drawable.logo_facebook)
 
                 }
 

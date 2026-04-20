@@ -1,5 +1,6 @@
 package com.example.application.ui.component.dashboard
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,6 +24,7 @@ fun HeaderSection() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.secondary)
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -29,7 +32,7 @@ fun HeaderSection() {
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
-                painter = painterResource(id = R.drawable.location_icon),
+                painter = painterResource(id = R.drawable.ic_location),
                 contentDescription = null,
                 modifier = Modifier.size(28.dp),
                 tint = Color.White
@@ -43,7 +46,7 @@ fun HeaderSection() {
 
         Row {
             Icon(
-                painter = painterResource(id = R.drawable.notification_icon),
+                painter = painterResource(id = R.drawable.ic_notification),
                 contentDescription = null,
                 modifier = Modifier.size(28.dp),
                 tint = Color.White

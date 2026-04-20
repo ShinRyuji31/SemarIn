@@ -8,6 +8,7 @@ import androidx.navigation.compose.*
 import com.example.application.ui.screen.DashboardScreen
 import com.example.application.ui.screen.LandingScreen
 import com.example.application.ui.screen.LoginScreen
+import com.example.application.ui.screen.ProfileScreen
 import com.example.application.ui.screen.SignUpScreen
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +37,11 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("dashboard") {
-                        DashboardScreen()
+                        DashboardScreen(navController)
+                    }
+
+                    composable("profile") {
+                        ProfileScreen(navController)
                     }
                 }
             }

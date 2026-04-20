@@ -5,23 +5,21 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.application.ui.component.dashboard.*
 
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(navController: NavController) {
 
     val listState = rememberLazyListState()
 
@@ -29,7 +27,7 @@ fun DashboardScreen() {
             listState.firstVisibleItemScrollOffset > 50
 
     Scaffold(
-        bottomBar = { BottomNavBar() }
+        bottomBar = { BottomNavBar(navController) }
     ) { padding ->
 
         Box(
@@ -42,22 +40,19 @@ fun DashboardScreen() {
                 state = listState,
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        brush = Brush.verticalGradient(
-                            listOf(
-                                MaterialTheme.colorScheme.primary,
-                                MaterialTheme.colorScheme.background
-                            )
-                        )
-                    )
-                    .padding(top = 40.dp)
+                    .background(MaterialTheme.colorScheme.secondary)
+                    .padding(top = 50.dp)
             ) {
 
                 item {
                     AnimatedVisibility(visible = !isScrolled) {
                         Text(
                             "Hi Jackowi 👋\nNeed Something?",
-                            modifier = Modifier.padding(top = 16.dp, bottom = 8.dp, start = 16.dp),
+                            modifier = Modifier.padding(
+                                top = 16.dp,
+                                bottom = 4.dp,
+                                start = 16.dp
+                            ),
                             color = Color.White,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
@@ -79,10 +74,8 @@ fun DashboardScreen() {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(
-                                MaterialTheme.colorScheme.background,
-                            )
-                            .padding(top = 8.dp)
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(top = 4.dp)
                     ) {
 
                         PromoSection()

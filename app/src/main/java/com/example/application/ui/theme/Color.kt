@@ -3,8 +3,9 @@ package com.example.application.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val BluePrimary = Color(0xFF01A5E8)
-val BlueSecondary = Color(0xFF5485DD)
+val BlueSecondary = Color(0xFF54B5DD)
 val WhiteSoft = Color(0xFFFDFDFD)
-val Black = Color (0xFF000000)
-
+val GrayMedium = Color(0xFF696969)
+val GrayDark = Color(0xFF333333)
+val BlackSoft = Color(0xFF1B1B1B)
 //
