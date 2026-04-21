@@ -10,6 +10,7 @@ import com.example.application.ui.screen.LandingScreen
 import com.example.application.ui.screen.LoginScreen
 import com.example.application.ui.screen.ProfileScreen
 import com.example.application.ui.screen.SignUpScreen
+import com.example.application.ui.screen.anjemin.AnjemScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("profile") {
                         ProfileScreen(navController)
+                    }
+
+                    composable("anjem") {
+                        AnjemScreen(navController)
                     }
                 }
             }

@@ -22,15 +22,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.application.ui.component.ButtonBlue
-import com.example.application.ui.component.TextFieldOutlineRegular
+import com.example.application.ui.component.global.ButtonBlue
+import com.example.application.ui.component.global.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.example.application.R
-import com.example.application.ui.component.ButtonSocial
+import com.example.application.ui.component.global.ButtonSocial
 
 @Composable
 fun SignUpScreen(navController: NavController) {

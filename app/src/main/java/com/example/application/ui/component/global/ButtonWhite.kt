@@ -1,4 +1,4 @@
-package com.example.application.ui.component
+package com.example.application.ui.component.global
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape

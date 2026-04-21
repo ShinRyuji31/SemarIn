@@ -20,16 +20,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.application.ui.theme.BlackSoft
+import com.example.application.ui.theme.GrayMedium
 
 @Composable
-fun LastOrderSection() {
+fun DashboardLastOrder() {
     Column(modifier = Modifier.padding(16.dp)) {
 
         Text(
             "Last Ordered",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black
+            color = BlackSoft
         )
 
         Card(
@@ -37,8 +39,8 @@ fun LastOrderSection() {
                 .fillMaxWidth()
                 .padding(top = 8.dp)
                 .border(
-                    2.dp,
-                    Color.LightGray,
+                    1.dp,
+                    GrayMedium,
                     RoundedCornerShape(16.dp)
                 ),
             shape = RoundedCornerShape(16.dp),
@@ -60,8 +62,8 @@ fun LastOrderSection() {
                     Text(
                         "Kopi Kenangan",
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black)
-                    Text("⭐ 4.8", color = Color.Black)
+                        color = BlackSoft)
+                    Text("⭐ 4.8", color = BlackSoft)
                 }
             }
         }

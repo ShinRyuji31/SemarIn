@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.R
-import com.example.application.ui.component.dashboard.BottomNavBar
-import com.example.application.ui.component.ProfileItem
+import com.example.application.ui.component.dashboard.DashboardBottomNavBar
+import com.example.application.ui.component.profile.ProfileItem
 import com.example.application.ui.theme.BluePrimary
 import com.example.application.ui.theme.BlueSecondary
 import com.example.application.ui.theme.blueWhiteGradient
@@ -31,7 +31,7 @@ fun ProfileScreen(navController: NavController) {
 
     Scaffold(
         bottomBar = {
-            BottomNavBar(navController)
+            DashboardBottomNavBar(navController)
         }
     ) { padding ->
 
@@ -57,7 +57,6 @@ fun ProfileScreen(navController: NavController) {
                     )
             ) {
 
-                // 🔙 BACK BUTTON
                 Box(
                     modifier = Modifier
                         .padding(16.dp)
@@ -79,7 +78,6 @@ fun ProfileScreen(navController: NavController) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    // 👤 PROFILE IMAGE
                     Box(
                         modifier = Modifier
                             .size(110.dp)

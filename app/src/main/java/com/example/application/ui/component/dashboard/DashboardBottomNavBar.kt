@@ -1,13 +1,7 @@
 package com.example.application.ui.component.dashboard
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -27,9 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.R
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun BottomNavBar(navController: NavController) {
+fun DashboardBottomNavBar(navController: NavController) {
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -55,7 +50,7 @@ fun BottomNavBar(navController: NavController) {
     )
 
     NavigationBar(
-        containerColor = Color.White,
+        containerColor = WhiteSoft,
         tonalElevation = 8.dp
     ) {
 

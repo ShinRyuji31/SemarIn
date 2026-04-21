@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.R
-import com.example.application.ui.component.ButtonBlue
-import com.example.application.ui.component.ButtonWhite
+import com.example.application.ui.component.global.ButtonBlue
+import com.example.application.ui.component.global.ButtonWhite
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable

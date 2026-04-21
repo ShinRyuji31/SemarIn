@@ -18,9 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import com.example.application.R
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun HeaderSection() {
+fun DashboardHeader() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -35,12 +36,12 @@ fun HeaderSection() {
                 painter = painterResource(id = R.drawable.ic_location),
                 contentDescription = null,
                 modifier = Modifier.size(28.dp),
-                tint = Color.White
+                tint = WhiteSoft
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 "Gg. Kutai Utara No.1",
-                color = Color.White
+                color = WhiteSoft
             )
         }
 
@@ -49,7 +50,7 @@ fun HeaderSection() {
                 painter = painterResource(id = R.drawable.ic_notification),
                 contentDescription = null,
                 modifier = Modifier.size(28.dp),
-                tint = Color.White
+                tint = WhiteSoft
             )
         }
     }

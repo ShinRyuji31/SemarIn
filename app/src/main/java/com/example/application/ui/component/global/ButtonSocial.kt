@@ -1,4 +1,4 @@
-package com.example.application.ui.component
+package com.example.application.ui.component.global
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.application.ui.theme.BluePrimary
 
 @Composable
 fun ButtonSocial(icon: Int) {

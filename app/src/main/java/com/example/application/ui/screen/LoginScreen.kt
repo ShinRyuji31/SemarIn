@@ -1,8 +1,6 @@
 package com.example.application.ui.screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -21,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.R
-import com.example.application.ui.component.ButtonBlue
-import com.example.application.ui.component.ButtonSocial
-import com.example.application.ui.component.TextFieldOutlineRegular
+import com.example.application.ui.component.global.ButtonBlue
+import com.example.application.ui.component.global.ButtonSocial
+import com.example.application.ui.component.global.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
@@ -81,7 +78,6 @@ fun LoginScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // PASSWORD
                 Text(
                     text = "Password",
                     modifier = Modifier.fillMaxWidth(),

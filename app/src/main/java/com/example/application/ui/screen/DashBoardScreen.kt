@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.ui.component.dashboard.*
+import com.example.application.ui.component.global.SearchBar
 
 @Composable
 fun DashboardScreen(navController: NavController) {
@@ -27,7 +28,7 @@ fun DashboardScreen(navController: NavController) {
             listState.firstVisibleItemScrollOffset > 50
 
     Scaffold(
-        bottomBar = { BottomNavBar(navController) }
+        bottomBar = { DashboardBottomNavBar(navController) }
     ) { padding ->
 
         Box(
@@ -66,7 +67,7 @@ fun DashboardScreen(navController: NavController) {
                             .background(Color.Transparent)
                             .padding(vertical = 16.dp)
                     ) {
-                        SearchSection()
+                        SearchBar(placeholderText = "Cari Kebutuhanmu")
                     }
                 }
 
@@ -78,11 +79,11 @@ fun DashboardScreen(navController: NavController) {
                             .padding(top = 4.dp)
                     ) {
 
-                        PromoSection()
-                        ServiceMenu()
-                        LastOrderSection()
-                        RestoSection()
-                        BannerSection()
+                        DasboardTopBanner()
+                        DashboardServiceSection(navController)
+                        DashboardLastOrder()
+                        DashboardRestaurant()
+                        DashboardBottomBanner()
 
                         Spacer(modifier = Modifier.height(80.dp))
                     }
@@ -94,7 +95,7 @@ fun DashboardScreen(navController: NavController) {
                     .fillMaxWidth()
                     .align(Alignment.TopCenter)
             ) {
-                HeaderSection()
+                DashboardHeader()
             }
         }
     }

@@ -1,10 +1,9 @@
-package com.example.application.ui.component
+package com.example.application.ui.component.global
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,7 +13,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.application.ui.theme.BluePrimary
-import com.example.application.ui.theme.BlueSecondary
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable

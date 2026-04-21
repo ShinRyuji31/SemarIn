@@ -1,4 +1,4 @@
-package com.example.application.ui.component
+package com.example.application.ui.component.profile
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
+import com.example.application.ui.theme.GrayMedium
 
 @Composable
 fun ProfileItem(title: String, icon: Int) {
@@ -47,7 +48,7 @@ fun ProfileItem(title: String, icon: Int) {
             painter = painterResource(id = R.drawable.ic_leftarrow),
             contentDescription = null,
             modifier = Modifier.size(18.dp),
-            tint = Color.Gray
+            tint = GrayMedium
         )
     }
 }

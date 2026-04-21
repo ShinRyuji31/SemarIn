@@ -19,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
+import com.example.application.ui.theme.BlackSoft
+import com.example.application.ui.theme.GrayMedium
 
 data class Resto(
     val name: String,
@@ -27,7 +29,7 @@ data class Resto(
 )
 
 @Composable
-fun RestoSection() {
+fun DashboardRestaurant() {
 
     val restos = listOf(
         Resto("Kopi Kenangan", "⭐ 4.8 • 1.2km", R.drawable.resto_kopikenangan),
@@ -43,7 +45,7 @@ fun RestoSection() {
             "Semar Resto Termurah",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.Black
+            color = BlackSoft
         )
 
         LazyRow {
@@ -53,8 +55,8 @@ fun RestoSection() {
                         .padding(8.dp)
                         .width(160.dp)
                         .border(
-                            2.dp,
-                            Color(0xFFE0E0E0),
+                            1.dp,
+                            GrayMedium,
                             RoundedCornerShape(16.dp)
                         ),
                     shape = RoundedCornerShape(16.dp),
