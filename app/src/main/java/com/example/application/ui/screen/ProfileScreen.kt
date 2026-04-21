@@ -42,19 +42,10 @@ fun ProfileScreen(navController: NavController) {
                 .padding(padding)
         ) {
 
-            // 🔵 HEADER
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            listOf(
-                                BluePrimary,
-                                BlueSecondary
-                            )
-                        )
-                    )
             ) {
 
                 Box(
@@ -98,6 +89,7 @@ fun ProfileScreen(navController: NavController) {
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text("Stan Marsh", color = Color.White, fontSize = 18.sp)
+
 
                     Text(
                         "+62-8123-4567-890",

@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
+import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayMedium
 
 @Composable
@@ -41,7 +42,8 @@ fun ProfileItem(title: String, icon: Int) {
         Text(
             text = title,
             modifier = Modifier.weight(1f),
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            color = BlackSoft
         )
 
         Icon(
