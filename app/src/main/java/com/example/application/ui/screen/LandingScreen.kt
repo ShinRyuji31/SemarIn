@@ -14,14 +14,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.ButtonWhite
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-fun LandingScreen(navController: NavController) {
+// 🌟 PERUBAHAN 1: Hapus NavController, ganti dengan parameter fungsi
+fun LandingScreen(
+    onLoginClick: () -> Unit,
+    onSignUpClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -34,9 +37,8 @@ fun LandingScreen(navController: NavController) {
                 .height(500.dp)
                 .background(
                     brush = blueWhiteGradient()
-                    )
                 )
-        {
+        ) {
 
             Image(
                 painter = painterResource(R.drawable.landing_delivery),
@@ -95,9 +97,7 @@ fun LandingScreen(navController: NavController) {
 
                 ButtonBlue(
                     text = "Log in",
-                    onClick = {
-                        navController.navigate("login")
-                    },
+                    onClick = onLoginClick,
                     modifier = Modifier
                         .width(250.dp)
                         .height(50.dp)
@@ -107,9 +107,7 @@ fun LandingScreen(navController: NavController) {
 
                 ButtonWhite(
                     text = "Sign Up",
-                    onClick = {
-                        navController.navigate("signup")
-                    },
+                    onClick = onSignUpClick,
                     modifier = Modifier
                         .width(250.dp)
                         .height(50.dp)

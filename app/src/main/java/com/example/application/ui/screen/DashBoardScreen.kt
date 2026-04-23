@@ -15,13 +15,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+// 🌟 HAPUS import NavController
 import com.example.application.ui.component.dashboard.*
 import com.example.application.ui.component.global.AffordableRestaurant
 import com.example.application.ui.component.global.SearchBar
 
 @Composable
-fun DashboardScreen(navController: NavController) {
+// 🌟 PERUBAHAN 1: Ganti NavController dengan 3 parameter fungsi
+fun DashboardScreen(
+    onProfileClick: () -> Unit,
+    onAnjeminClick: () -> Unit,
+    onJajaninClick: () -> Unit
+) {
 
     val listState = rememberLazyListState()
 
@@ -29,7 +34,14 @@ fun DashboardScreen(navController: NavController) {
             listState.firstVisibleItemScrollOffset > 50
 
     Scaffold(
-        bottomBar = { DashboardBottomNavBar(navController) }
+        bottomBar = {
+            // 🌟 PERUBAHAN 2: Oper fungsi onProfileClick ke BottomNavBar
+            DashboardBottomNavBar(
+                currentTab = 0,
+                onHomeClick = { },
+                onProfileClick = onProfileClick
+            )
+        }
     ) { padding ->
 
         Box(
@@ -81,7 +93,13 @@ fun DashboardScreen(navController: NavController) {
                     ) {
 
                         DasboardTopBanner()
-                        DashboardServiceSection(navController)
+
+                        // 🌟 PERUBAHAN 3: Oper fungsi ke ServiceSection
+                        DashboardServiceSection(
+                            onAnjeminClick = onAnjeminClick,
+                            onJajaninClick = onJajaninClick
+                        )
+
                         DashboardLastOrder()
                         AffordableRestaurant()
                         DashboardBottomBanner()

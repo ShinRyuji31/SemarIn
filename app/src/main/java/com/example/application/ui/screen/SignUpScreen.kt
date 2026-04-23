@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+// 🌟 HAPUS import NavController
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
@@ -33,7 +33,11 @@ import com.example.application.R
 import com.example.application.ui.component.global.ButtonSocial
 
 @Composable
-fun SignUpScreen(navController: NavController) {
+// 🌟 PERUBAHAN 1: Ganti NavController dengan Parameter Fungsi
+fun SignUpScreen(
+    onRegisterSuccess: () -> Unit,
+    onLoginClick: () -> Unit
+) {
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -117,11 +121,13 @@ fun SignUpScreen(navController: NavController) {
                 ButtonBlue(
                     text = "Sign Up",
                     onClick = {
+                        // 🌟 Conditional Navigation
                         if (username.isNotEmpty() &&
                             password.isNotEmpty() &&
                             password == confirm
                         ) {
-                            navController.navigate("dashboard")
+                            // 🌟 PERUBAHAN 2: Panggil fungsi sukses
+                            onRegisterSuccess()
                         }
                     },
                     modifier = Modifier
@@ -145,8 +151,9 @@ fun SignUpScreen(navController: NavController) {
 
                 Text(
                     text = "Already have an account? Login",
+                    // 🌟 PERUBAHAN 3: Panggil fungsi klik login
                     modifier = Modifier.clickable {
-                        navController.navigate("login")
+                        onLoginClick()
                     }
                 )
             }

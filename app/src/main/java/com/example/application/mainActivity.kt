@@ -3,15 +3,11 @@ package com.example.application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import com.example.application.ui.navigation.AppNavigation
+import com.example.application.ui.navigation.Routes
 import com.example.application.ui.theme.ApplicationTheme
-import androidx.navigation.compose.*
-import com.example.application.ui.screen.DashboardScreen
-import com.example.application.ui.screen.LandingScreen
-import com.example.application.ui.screen.LoginScreen
-import com.example.application.ui.screen.ProfileScreen
-import com.example.application.ui.screen.SignUpScreen
-import com.example.application.ui.screen.anterin.AnterScreen
-import com.example.application.ui.screen.jajanin.JajaninMainPage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,42 +16,28 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApplicationTheme {
 
-                val navController = rememberNavController()
+                // 1. Inisialisasi BackStack (Tumpukan Layar) Navigasi 3
+                // Kita mulai tumpukan pertamanya dengan halaman LandingRoute
+                val backStack = remember { mutableStateListOf<Routes>(Routes.LandingRoute) }
 
-                NavHost(
-                    navController = navController,
-                    startDestination = "landing"
-                ) {
-                    composable("landing") {
-                        LandingScreen(navController)
-                    }
+                // 2. Mengambil layar paling atas (terakhir ditambahkan) untuk ditampilkan
+                val currentRoute = backStack.last()
 
-                    composable("login") {
-                        LoginScreen(navController)
+                // 3. Memanggil file Compositions.kt (AppNavigation)
+                AppNavigation(
+                    currentRoute = currentRoute,
+                    onNavigate = { newRoute ->
+                        // Misi: Basic Routing (Pindah ke halaman baru dengan cara ditumpuk)
+                        backStack.add(newRoute)
+                    },
+                    onBack = {
+                        // Misi: Back Navigation (Mengambil/menghapus tumpukan teratas tanpa error)
+                        if (backStack.size > 1) {
+                            backStack.removeLastOrNull()
+                        }
                     }
+                )
 
-                    composable("signup") {
-                        SignUpScreen(navController)
-                    }
-
-                    composable("dashboard") {
-                        DashboardScreen(navController)
-                    }
-
-                    composable("profile") {
-                        ProfileScreen(navController)
-                    }
-
-                    composable("Anter") {
-                        AnterScreen(navController)
-                    }
-
-                    composable("jajan") {
-                        JajaninMainPage(
-                            onBack = { navController.popBackStack() }
-                        )
-                    }
-                }
             }
         }
     }

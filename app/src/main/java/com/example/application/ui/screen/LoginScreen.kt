@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+// HAPUS import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.ButtonSocial
@@ -24,7 +24,11 @@ import com.example.application.ui.component.global.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-fun LoginScreen(navController: NavController) {
+// 🌟 PERUBAHAN 1: Menggunakan parameter fungsi sebagai pengganti NavController
+fun LoginScreen(
+    onLoginSuccess: () -> Unit,
+    onGoToSignUp: () -> Unit
+) {
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -50,7 +54,6 @@ fun LoginScreen(navController: NavController) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
 
                 Text(
                     text = "Login",
@@ -99,10 +102,10 @@ fun LoginScreen(navController: NavController) {
                 ButtonBlue(
                     text = "Log In",
                     onClick = {
+                        // 🌟 Conditional Navigation (Nilai Plus Praktikum!)
                         if (username.isNotEmpty() && password.isNotEmpty()) {
-                            navController.navigate("dashboard") {
-                                popUpTo("landing") { inclusive = true }
-                            }
+                            // 🌟 PERUBAHAN 2: Panggil fungsi onLoginSuccess
+                            onLoginSuccess()
                         }
                     },
                     modifier = Modifier
@@ -144,8 +147,9 @@ fun LoginScreen(navController: NavController) {
                             append("Sign Up")
                         }
                     },
+                    // 🌟 PERUBAHAN 3: Panggil fungsi onGoToSignUp
                     modifier = Modifier.clickable {
-                        navController.navigate("signup")
+                        onGoToSignUp()
                     },
                     fontSize = 13.sp
                 )

@@ -15,14 +15,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayDark
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun DashboardServiceSection(navController: NavController) {
+fun DashboardServiceSection(
+    onAnjeminClick: () -> Unit,
+    onJajaninClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,18 +32,21 @@ fun DashboardServiceSection(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         ServiceCard("Antar-in", R.drawable.ic_bike) {
-            navController.navigate("Anter")
+            // 🌟 PERUBAHAN: Tambahkan tanda () agar fungsinya dieksekusi
+            onAnjeminClick()
         }
 
         ServiceCard("Jajan-in", R.drawable.ic_cutlery) {
-            navController.navigate("jajan")
+            // 🌟 PERUBAHAN: Tambahkan tanda () agar fungsinya dieksekusi
+            onJajaninClick()
         }
 
         ServiceCard("Jastip-in", R.drawable.ic_bag) {
-            navController.navigate("jastip")
+            // Fitur belum aktif, biarkan kosong
         }
 
         ServiceCard("All", R.drawable.ic_all) {
+            // Fitur belum aktif, biarkan kosong
         }
     }
 }
