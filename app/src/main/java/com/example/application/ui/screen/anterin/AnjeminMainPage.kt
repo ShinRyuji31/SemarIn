@@ -1,6 +1,5 @@
-package com.example.application.ui.screen.anjemin
+package com.example.application.ui.screen.anterin
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -17,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -35,8 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
-import com.example.application.ui.component.anjemin.AnjeminBackground
-import com.example.application.ui.component.anjemin.AnjeminHeader
+import com.example.application.ui.component.Anterin.AnterinBackground
+import com.example.application.ui.component.global.Header
 import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayMedium
 import com.example.application.ui.theme.WhiteSoft
@@ -47,10 +45,11 @@ enum class MainMode {
 }
 
 @Composable
-fun AnjeminMainPage(
+fun AnterinMainPage(
     mode: MainMode,
     onPickupClick: () -> Unit,
-    onDestinationClick: () -> Unit
+    onDestinationClick: () -> Unit,
+    onBack:() -> Unit
 ) {
 
     var pickup by remember { mutableStateOf("") }
@@ -58,10 +57,13 @@ fun AnjeminMainPage(
 
     Box(modifier = Modifier.fillMaxSize()) {
 
-        AnjeminBackground()
+        AnterinBackground()
 
         Column {
-            AnjeminHeader(onBack = {})
+            Header(
+                title = "Anter-In",
+                onBack = onBack
+            )
         }
 
         Box(

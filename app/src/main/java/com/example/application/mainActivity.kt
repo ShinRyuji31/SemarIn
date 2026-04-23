@@ -10,7 +10,8 @@ import com.example.application.ui.screen.LandingScreen
 import com.example.application.ui.screen.LoginScreen
 import com.example.application.ui.screen.ProfileScreen
 import com.example.application.ui.screen.SignUpScreen
-import com.example.application.ui.screen.anjemin.AnjemScreen
+import com.example.application.ui.screen.anterin.AnterScreen
+import com.example.application.ui.screen.jajanin.JajaninMainPage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +46,14 @@ class MainActivity : ComponentActivity() {
                         ProfileScreen(navController)
                     }
 
-                    composable("anjem") {
-                        AnjemScreen(navController)
+                    composable("Anter") {
+                        AnterScreen(navController)
+                    }
+
+                    composable("jajan") {
+                        JajaninMainPage(
+                            onBack = { navController.popBackStack() }
+                        )
                     }
                 }
             }

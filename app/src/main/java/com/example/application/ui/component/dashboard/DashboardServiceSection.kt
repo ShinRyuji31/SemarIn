@@ -30,7 +30,7 @@ fun DashboardServiceSection(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         ServiceCard("Antar-in", R.drawable.ic_bike) {
-            navController.navigate("anjem")
+            navController.navigate("Anter")
         }
 
         ServiceCard("Jajan-in", R.drawable.ic_cutlery) {

@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.component.dashboard.DashboardBottomNavBar
+import com.example.application.ui.component.global.BackButton
 import com.example.application.ui.component.profile.ProfileItem
 import com.example.application.ui.theme.BluePrimary
 import com.example.application.ui.theme.BlueSecondary
@@ -48,21 +49,12 @@ fun ProfileScreen(navController: NavController) {
                     .height(300.dp)
             ) {
 
-                Box(
+                BackButton(
+                    onClick = {},
                     modifier = Modifier
-                        .padding(16.dp)
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
-                        .clickable { navController.popBackStack() },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_leftarrow),
-                        contentDescription = null,
-                        tint = Color.Black
-                    )
-                }
+                        .padding(start = 16.dp)
+                        .align(Alignment.CenterStart)
+                )
 
                 Column(
                     modifier = Modifier.align(Alignment.Center),

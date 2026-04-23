@@ -1,4 +1,4 @@
-package com.example.application.ui.screen.anjemin
+package com.example.application.ui.screen.anterin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
-import com.example.application.ui.component.anjemin.AnjeminHeader
+import com.example.application.ui.component.global.Header
 import com.example.application.ui.theme.BluePrimary
 
 enum class DriverState {
@@ -28,7 +28,7 @@ enum class DriverState {
 }
 
 @Composable
-fun AnjeminFindingDriverPage(
+fun AnterinFindingDriverPage(
     state: DriverState,
     onBack: () -> Unit
 ) {
@@ -44,7 +44,7 @@ fun AnjeminFindingDriverPage(
     }
 
     val image = when (state) {
-        DriverState.FINDING -> R.drawable.ic_bike
+        DriverState.FINDING -> R.drawable.logo_coloredbike
         DriverState.FOUND -> R.drawable.ic_star
     }
 
@@ -57,7 +57,10 @@ fun AnjeminFindingDriverPage(
     ) {
 
         Column {
-            AnjeminHeader(onBack)
+            Header(
+                title = "Anter-In",
+                onBack = onBack
+            )
         }
 
         Column(

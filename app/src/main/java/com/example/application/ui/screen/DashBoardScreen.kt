@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.application.ui.component.dashboard.*
+import com.example.application.ui.component.global.AffordableRestaurant
 import com.example.application.ui.component.global.SearchBar
 
 @Composable
@@ -82,7 +83,7 @@ fun DashboardScreen(navController: NavController) {
                         DasboardTopBanner()
                         DashboardServiceSection(navController)
                         DashboardLastOrder()
-                        DashboardRestaurant()
+                        AffordableRestaurant()
                         DashboardBottomBanner()
 
                         Spacer(modifier = Modifier.height(80.dp))

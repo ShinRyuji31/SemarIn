@@ -1,4 +1,4 @@
-package com.example.application.ui.screen.anjemin
+package com.example.application.ui.screen.anterin
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +10,8 @@ import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
-enum class AnjemStep {
+
+enum class AnterStep {
     PICKUP_INPUT,
     PICKUP_MAP,
     DESTINATION_INPUT,
@@ -20,65 +21,67 @@ enum class AnjemStep {
 }
 
 @Composable
-fun AnjemScreen(navController: NavController) {
+fun AnterScreen(navController: NavController) {
 
-    var currentStep by remember { mutableStateOf(AnjemStep.PICKUP_INPUT) }
+    var currentStep by remember { mutableStateOf(AnterStep.PICKUP_INPUT) }
 
     Box(modifier = Modifier.fillMaxSize()) {
 
         when (currentStep) {
 
-            AnjemStep.PICKUP_INPUT -> AnjeminMainPage(
+            AnterStep.PICKUP_INPUT -> AnterinMainPage(
                 mode = MainMode.PICKUP_ONLY,
                 onPickupClick = {
-                    currentStep = AnjemStep.PICKUP_MAP
+                    currentStep = AnterStep.PICKUP_MAP
                 },
-                onDestinationClick = {}
+                onDestinationClick = {},
+                onBack = { navController.popBackStack() }
             )
 
-            AnjemStep.PICKUP_MAP -> AnjeminSearchPage(
+            AnterStep.PICKUP_MAP -> AnterinSearchPage(
                 mode = MapMode.PICKUP,
                 onNext = {
-                    currentStep = AnjemStep.DESTINATION_INPUT
+                    currentStep = AnterStep.DESTINATION_INPUT
                 },
                 onBack = {
-                    currentStep = AnjemStep.PICKUP_INPUT
+                    currentStep = AnterStep.PICKUP_INPUT
                 }
             )
 
-            AnjemStep.DESTINATION_INPUT -> AnjeminMainPage(
+            AnterStep.DESTINATION_INPUT -> AnterinMainPage(
                 mode = MainMode.PICKUP_AND_DESTINATION,
                 onPickupClick = {
-                    currentStep = AnjemStep.PICKUP_MAP
+                    currentStep = AnterStep.PICKUP_MAP
                 },
                 onDestinationClick = {
-                    currentStep = AnjemStep.DESTINATION_MAP
-                }
+                    currentStep = AnterStep.DESTINATION_MAP
+                },
+                { navController.popBackStack() }
             )
 
-            AnjemStep.DESTINATION_MAP -> AnjeminSearchPage(
+            AnterStep.DESTINATION_MAP -> AnterinSearchPage(
                 mode = MapMode.DESTINATION,
                 onNext = {
-                    currentStep = AnjemStep.DESTINATION_SET
+                    currentStep = AnterStep.DESTINATION_SET
                 },
                 onBack = {
-                    currentStep = AnjemStep.DESTINATION_INPUT
+                    currentStep = AnterStep.DESTINATION_INPUT
                 }
             )
 
-            AnjemStep.DESTINATION_SET -> AnjeminDestinationSetPage(
+            AnterStep.DESTINATION_SET -> AnterinDestinationSetPage(
                 onBack = {
-                    currentStep = AnjemStep.DESTINATION_INPUT
+                    currentStep = AnterStep.DESTINATION_INPUT
                 },
                 onFindDriver = {
-                    currentStep = AnjemStep.FINDING_DRIVER
+                    currentStep = AnterStep.FINDING_DRIVER
                 }
             )
 
-            AnjemStep.FINDING_DRIVER -> AnjeminFindingDriverPage(
+            AnterStep.FINDING_DRIVER -> AnterinFindingDriverPage(
                 state = DriverState.FINDING,
                 onBack = {
-                    currentStep = AnjemStep.DESTINATION_SET
+                    currentStep = AnterStep.DESTINATION_SET
                 }
             )
         }

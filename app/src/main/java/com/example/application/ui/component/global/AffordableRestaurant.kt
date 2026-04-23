@@ -1,4 +1,4 @@
-package com.example.application.ui.component.dashboard
+package com.example.application.ui.component.global
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -29,7 +29,7 @@ data class Resto(
 )
 
 @Composable
-fun DashboardRestaurant() {
+fun AffordableRestaurant() {
 
     val restos = listOf(
         Resto("Kopi Kenangan", "⭐ 4.8 • 1.2km", R.drawable.resto_kopikenangan),

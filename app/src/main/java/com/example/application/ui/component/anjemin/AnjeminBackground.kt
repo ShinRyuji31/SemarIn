@@ -1,4 +1,4 @@
-package com.example.application.ui.component.anjemin
+package com.example.application.ui.component.Anterin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,7 @@ import androidx.compose.ui.res.painterResource
 import com.example.application.R
 
 @Composable
-fun AnjeminBackground() {
+fun AnterinBackground() {
     Image(
         painter = painterResource(id = R.drawable.background_mapdummy),
         contentDescription = null,

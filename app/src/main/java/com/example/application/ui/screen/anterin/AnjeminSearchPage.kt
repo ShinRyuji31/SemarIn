@@ -1,12 +1,12 @@
-package com.example.application.ui.screen.anjemin
+package com.example.application.ui.screen.anterin
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.application.ui.component.anjemin.AnjeminBackground
-import com.example.application.ui.component.anjemin.AnjeminHeader
+import com.example.application.ui.component.Anterin.AnterinBackground
+import com.example.application.ui.component.global.Header
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.SearchBar
 
@@ -16,7 +16,7 @@ enum class MapMode {
 }
 
 @Composable
-fun AnjeminSearchPage(
+fun AnterinSearchPage(
     mode: MapMode,
     onNext: () -> Unit,
     onBack: () -> Unit
@@ -34,10 +34,13 @@ fun AnjeminSearchPage(
 
     Box(modifier = Modifier.fillMaxSize()) {
 
-        AnjeminBackground()
+        AnterinBackground()
 
         Column {
-            AnjeminHeader(onBack)
+            Header(
+                title = "Anter-In",
+                onBack = onBack
+            )
         }
 
         Box(

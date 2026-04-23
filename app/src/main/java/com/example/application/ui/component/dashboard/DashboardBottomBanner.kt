@@ -32,7 +32,7 @@ import com.example.application.ui.theme.WhiteSoft
 fun DashboardBottomBanner() {
 
     val banners = listOf(
-        R.drawable.banner_anjemin,
+        R.drawable.banner_anterin,
         R.drawable.banner_titipin
     )
 
@@ -74,7 +74,7 @@ fun DashboardBottomBanner() {
                     ) {
 
                         Text(
-                            text = "Anjem-In Lagi Disini",
+                            text = "Anter-In Lagi Disini",
                             fontWeight = FontWeight.Bold,
                             color = BlackSoft,
                             fontSize = 16.sp
