@@ -15,13 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-// 🌟 HAPUS import NavController
 import com.example.application.ui.component.dashboard.*
 import com.example.application.ui.component.global.AffordableRestaurant
 import com.example.application.ui.component.global.SearchBar
 
 @Composable
-// 🌟 PERUBAHAN 1: Ganti NavController dengan 3 parameter fungsi
 fun DashboardScreen(
     onProfileClick: () -> Unit,
     onAnjeminClick: () -> Unit,
@@ -35,7 +33,6 @@ fun DashboardScreen(
 
     Scaffold(
         bottomBar = {
-            // 🌟 PERUBAHAN 2: Oper fungsi onProfileClick ke BottomNavBar
             DashboardBottomNavBar(
                 currentTab = 0,
                 onHomeClick = { },
@@ -94,7 +91,6 @@ fun DashboardScreen(
 
                         DasboardTopBanner()
 
-                        // 🌟 PERUBAHAN 3: Oper fungsi ke ServiceSection
                         DashboardServiceSection(
                             onAnjeminClick = onAnjeminClick,
                             onJajaninClick = onJajaninClick
