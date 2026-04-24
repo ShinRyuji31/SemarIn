@@ -132,7 +132,6 @@ fun AnterinMainPage(
                     }
                 }
 
-                // 🔹 HISTORY
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text("History", fontWeight = FontWeight.Bold)
