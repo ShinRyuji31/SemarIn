@@ -15,8 +15,8 @@ import com.example.application.ui.theme.WhiteSoft
 
 @Composable
 fun DashboardBottomNavBar(
-    currentTab: Int, // 🌟 Tambahan: Untuk tahu tab mana yang harus menyala
-    onHomeClick: () -> Unit, // 🌟 Tambahan: Fungsi untuk kembali ke Home
+    currentTab: Int,
+    onHomeClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
 
@@ -34,16 +34,15 @@ fun DashboardBottomNavBar(
     ) {
         items.forEachIndexed { index, label ->
 
-            // 🌟 Mengecek apakah tab ini yang sedang aktif
             val isSelected = currentTab == index
 
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
                     when (index) {
-                        0 -> onHomeClick()    // 🌟 Sekarang Home punya aksinya sendiri
-                        1 -> { /* TODO */ }
-                        2 -> { /* TODO */ }
+                        0 -> onHomeClick()   
+                        1 -> {}
+                        2 -> {}
                         3 -> onProfileClick()
                     }
                 },
