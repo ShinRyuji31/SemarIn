@@ -27,8 +27,6 @@ fun AppNavigation(
         is Routes.SignUpRoute -> SignUpScreen(
             onRegisterSuccess = { onNavigate(Routes.DashBoardRoute) },
             onLoginClick = {
-                // Bisa pakai onBack() jika sebelumnya dari layar Login,
-                // Atau pakai onNavigate jika ingin menumpuk layar baru
                 onNavigate(Routes.LoginRoute) }
         )
 
@@ -40,7 +38,6 @@ fun AppNavigation(
 
         is Routes.ProfileRoute -> ProfileScreen(
             onBack = onBack,
-//            onLogout = { onNavigate(Routes.LandingRoute) },
             onHomeClick = { onNavigate(Routes.DashBoardRoute) }
         )
 
@@ -48,7 +45,6 @@ fun AppNavigation(
             onBack = onBack
         )
 
-        // --- Rute Jajanin ---
         is Routes.JajaninMainRoute -> JajaninMainPage(
             onBack = onBack,
             onCategoryClick = { categoryName ->
