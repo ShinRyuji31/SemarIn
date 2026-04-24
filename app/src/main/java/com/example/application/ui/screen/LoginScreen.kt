@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-// HAPUS import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.ButtonSocial
@@ -24,7 +23,6 @@ import com.example.application.ui.component.global.TextFieldOutlineRegular
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-// 🌟 PERUBAHAN 1: Menggunakan parameter fungsi sebagai pengganti NavController
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
     onGoToSignUp: () -> Unit
@@ -63,7 +61,6 @@ fun LoginScreen(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // USERNAME
                 Text(
                     text = "Username",
                     modifier = Modifier.fillMaxWidth(),
@@ -102,9 +99,7 @@ fun LoginScreen(
                 ButtonBlue(
                     text = "Log In",
                     onClick = {
-                        // 🌟 Conditional Navigation (Nilai Plus Praktikum!)
                         if (username.isNotEmpty() && password.isNotEmpty()) {
-                            // 🌟 PERUBAHAN 2: Panggil fungsi onLoginSuccess
                             onLoginSuccess()
                         }
                     },
@@ -147,7 +142,6 @@ fun LoginScreen(
                             append("Sign Up")
                         }
                     },
-                    // 🌟 PERUBAHAN 3: Panggil fungsi onGoToSignUp
                     modifier = Modifier.clickable {
                         onGoToSignUp()
                     },
