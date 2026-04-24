@@ -18,7 +18,6 @@ import com.example.application.ui.component.global.SearchBar
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-// 🌟 PERUBAHAN 1: Tambahkan parameter onCategoryClick untuk passing data
 fun JajaninMainPage(
     onBack: () -> Unit,
     onCategoryClick: (String) -> Unit
@@ -63,7 +62,6 @@ fun JajaninMainPage(
 
                     AffordableRestaurant()
 
-                    // 🌟 PERUBAHAN 2: Menambahkan tombol Kategori untuk memicu Passing Parameter
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
                         text = "Kategori Pilihan",
@@ -99,7 +97,6 @@ fun JajaninMainPage(
             }
         }
 
-        // 🔝 HEADER (FLOATING)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
