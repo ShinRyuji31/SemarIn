@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-// 🌟 HAPUS import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
@@ -20,7 +19,6 @@ enum class AnterStep {
 }
 
 @Composable
-// 🌟 PERUBAHAN 1: Ganti nama fungsi & hapus NavController
 fun AnterScreen(onBack: () -> Unit) {
 
     var currentStep by remember { mutableStateOf(AnterStep.PICKUP_INPUT) }
@@ -35,7 +33,6 @@ fun AnterScreen(onBack: () -> Unit) {
                     currentStep = AnterStep.PICKUP_MAP
                 },
                 onDestinationClick = {},
-                // 🌟 PERUBAHAN 2: Panggil fungsi callback
                 onBack = onBack
             )
 
@@ -57,7 +54,6 @@ fun AnterScreen(onBack: () -> Unit) {
                 onDestinationClick = {
                     currentStep = AnterStep.DESTINATION_MAP
                 },
-                // 🌟 PERUBAHAN 3: Panggil fungsi callback (di sini kamu lupa menulis nama parameternya sebelumnya)
                 onBack = onBack
             )
 
