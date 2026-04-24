@@ -20,7 +20,6 @@ import com.example.application.ui.component.global.ButtonWhite
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-// 🌟 PERUBAHAN 1: Hapus NavController, ganti dengan parameter fungsi
 fun LandingScreen(
     onLoginClick: () -> Unit,
     onSignUpClick: () -> Unit
