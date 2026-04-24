@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-// 🌟 HAPUS import androidx.navigation.NavController
 import com.example.application.R
 import com.example.application.ui.component.dashboard.DashboardBottomNavBar
 import com.example.application.ui.component.global.BackButton
@@ -25,16 +24,13 @@ import com.example.application.ui.component.profile.ProfileItem
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
-// 🌟 PERUBAHAN 1: Ganti NavController
 fun ProfileScreen(
     onBack: () -> Unit,
-//    onLogout: () -> Unit
     onHomeClick: () -> Unit
 ) {
 
     Scaffold(
         bottomBar = {
-            // 🌟 PERUBAHAN 2: Sesuaikan BottomNavBar
             DashboardBottomNavBar(
                 currentTab = 3,
                 onHomeClick = onHomeClick,
@@ -57,7 +53,6 @@ fun ProfileScreen(
             ) {
 
                 BackButton(
-                    // 🌟 PERUBAHAN 3: Hubungkan aksi tombol kembali
                     onClick = onBack,
                     modifier = Modifier
                         .padding(start = 16.dp)
