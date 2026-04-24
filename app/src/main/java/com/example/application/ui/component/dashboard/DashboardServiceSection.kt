@@ -32,21 +32,19 @@ fun DashboardServiceSection(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         ServiceCard("Antar-in", R.drawable.ic_bike) {
-            // 🌟 PERUBAHAN: Tambahkan tanda () agar fungsinya dieksekusi
             onAnjeminClick()
         }
 
         ServiceCard("Jajan-in", R.drawable.ic_cutlery) {
-            // 🌟 PERUBAHAN: Tambahkan tanda () agar fungsinya dieksekusi
             onJajaninClick()
         }
 
         ServiceCard("Jastip-in", R.drawable.ic_bag) {
-            // Fitur belum aktif, biarkan kosong
+            //fiturnya belum aktif
         }
 
         ServiceCard("All", R.drawable.ic_all) {
-            // Fitur belum aktif, biarkan kosong
+            //fiturnya belum aktif
         }
     }
 }
