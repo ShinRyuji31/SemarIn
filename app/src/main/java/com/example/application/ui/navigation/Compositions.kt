@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import com.example.application.ui.screen.*
 import com.example.application.ui.screen.anterin.AnterScreen
 import com.example.application.ui.screen.jajanin.JajaninMainPage
-import com.example.application.ui.screen.jajanin.JajaninRestaurantList
 
 @Composable
 fun AppNavigation(
