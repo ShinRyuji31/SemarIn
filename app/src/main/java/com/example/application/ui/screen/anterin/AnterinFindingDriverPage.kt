@@ -1,13 +1,7 @@
 package com.example.application.ui.screen.anterin
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,41 +27,37 @@ fun AnterinFindingDriverPage(
     onBack: () -> Unit
 ) {
 
-    val title = when (state) {
-        DriverState.FINDING -> "Hold on tight."
-        DriverState.FOUND -> "Horay!"
-    }
+    val (title, subtitle, image) = when (state) {
+        DriverState.FINDING -> Triple(
+            "Hold on tight.",
+            "We are finding a driver for you",
+            R.drawable.logo_coloredbike
+        )
 
-    val subtitle = when (state) {
-        DriverState.FINDING -> "We are finding a driver for you"
-        DriverState.FOUND -> "We have found you a driver"
-    }
-
-    val image = when (state) {
-        DriverState.FINDING -> R.drawable.logo_coloredbike
-        DriverState.FOUND -> R.drawable.ic_star
+        DriverState.FOUND -> Triple(
+            "Horay!",
+            "We have found you a driver",
+            R.drawable.ic_star
+        )
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                BluePrimary
-            )
+            .background(BluePrimary)
     ) {
 
-        Column {
-            Header(
-                title = "Anter-In",
-                onBack = onBack
-            )
-        }
+        Header(
+            title = "Anter-In",
+            onBack = onBack
+        )
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 120.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
 
             Text(
@@ -77,7 +67,7 @@ fun AnterinFindingDriverPage(
                 color = Color.White
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             Text(
                 text = subtitle,

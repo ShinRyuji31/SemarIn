@@ -9,6 +9,7 @@ import com.example.application.ui.component.Anterin.AnterinBackground
 import com.example.application.ui.component.global.Header
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.SearchBar
+import com.example.application.ui.navigation.Routes
 
 enum class MapMode {
     PICKUP,
@@ -18,18 +19,13 @@ enum class MapMode {
 @Composable
 fun AnterinSearchPage(
     mode: MapMode,
-    onNext: () -> Unit,
+    onNavigate: (Routes) -> Unit,
     onBack: () -> Unit
 ) {
 
     val buttonText = when (mode) {
         MapMode.PICKUP -> "Set Pick-Up Location"
         MapMode.DESTINATION -> "Set Destination"
-    }
-
-    val placeholder = when (mode) {
-        MapMode.PICKUP -> "Search pick-up location"
-        MapMode.DESTINATION -> "Search destination"
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -48,12 +44,23 @@ fun AnterinSearchPage(
                 .fillMaxWidth()
                 .padding(top = 110.dp)
         ) {
-            SearchBar(placeholderText = placeholder)
+            SearchBar(
+                placeholderText = if (mode == MapMode.PICKUP)
+                    "Search pick-up location"
+                else
+                    "Search destination"
+            )
         }
 
         ButtonBlue(
             text = buttonText,
-            onClick = onNext,
+            onClick = {
+                if (mode == MapMode.PICKUP) {
+                    onNavigate(Routes.AnterDestinationInputRoute)
+                } else {
+                    onNavigate(Routes.AnterDestinationSetRoute)
+                }
+            },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .navigationBarsPadding()
@@ -61,6 +68,5 @@ fun AnterinSearchPage(
                 .fillMaxWidth()
                 .height(50.dp)
         )
-
     }
 }

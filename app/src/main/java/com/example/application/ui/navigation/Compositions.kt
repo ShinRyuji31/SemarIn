@@ -2,8 +2,8 @@ package com.example.application.ui.navigation
 
 import androidx.compose.runtime.Composable
 import com.example.application.ui.screen.*
-import com.example.application.ui.screen.anterin.AnterScreen
-import com.example.application.ui.screen.jajanin.JajaninMainPage
+import com.example.application.ui.screen.anterin.*
+import com.example.application.ui.screen.jajanin.*
 
 @Composable
 fun AppNavigation(
@@ -11,8 +11,10 @@ fun AppNavigation(
     onNavigate: (Routes) -> Unit,
     onBack: () -> Unit
 ) {
+
     when (currentRoute) {
 
+        // AUTH FLOW
         is Routes.LandingRoute -> LandingScreen(
             onLoginClick = { onNavigate(Routes.LoginRoute) },
             onSignUpClick = { onNavigate(Routes.SignUpRoute) }
@@ -25,13 +27,13 @@ fun AppNavigation(
 
         is Routes.SignUpRoute -> SignUpScreen(
             onRegisterSuccess = { onNavigate(Routes.DashBoardRoute) },
-            onLoginClick = {
-                onNavigate(Routes.LoginRoute) }
+            onLoginClick = { onNavigate(Routes.LoginRoute) }
         )
 
+        // DASHBOARD
         is Routes.DashBoardRoute -> DashboardScreen(
             onProfileClick = { onNavigate(Routes.ProfileRoute) },
-            onAnjeminClick = { onNavigate(Routes.AnjeminScreenRoute) },
+            onAnjeminClick = { onNavigate(Routes.AnterPickupInputRoute) },
             onJajaninClick = { onNavigate(Routes.JajaninMainRoute) }
         )
 
@@ -40,16 +42,56 @@ fun AppNavigation(
             onHomeClick = { onNavigate(Routes.DashBoardRoute) }
         )
 
-        is Routes.AnjeminScreenRoute -> AnterScreen(
+        // ANTER FLOW ===============================================================================
+
+        is Routes.AnterPickupInputRoute -> AnterinMainPage(
+            mode = MainMode.PICKUP_ONLY,
+            onPickupClick = { onNavigate(Routes.AnterPickupMapRoute) },
+            onDestinationClick = {},
             onBack = onBack
         )
 
+        is Routes.AnterPickupMapRoute -> AnterinSearchPage(
+            mode = MapMode.PICKUP,
+            onNavigate = onNavigate,
+            onBack = onBack
+        )
+
+        is Routes.AnterDestinationInputRoute -> AnterinMainPage(
+            mode = MainMode.PICKUP_AND_DESTINATION,
+            onPickupClick = { onNavigate(Routes.AnterPickupMapRoute) },
+            onDestinationClick = { onNavigate(Routes.AnterDestinationMapRoute) },
+            onBack = onBack
+        )
+
+        is Routes.AnterDestinationMapRoute -> AnterinSearchPage(
+            mode = MapMode.DESTINATION,
+            onNavigate = onNavigate,
+            onBack = onBack
+        )
+
+        is Routes.AnterDestinationSetRoute -> AnterinDestinationSetPage(
+            onBack = onBack,
+            onFindDriver = { onNavigate(Routes.AnterFindingDriverRoute) }
+        )
+
+        is Routes.AnterFindingDriverRoute -> AnterinFindingDriverPage(
+            state = DriverState.FINDING,
+            onBack = onBack
+        )
+
+        // JAJAN FLOW ==============================================================
+
         is Routes.JajaninMainRoute -> JajaninMainPage(
             onBack = onBack,
-            onCategoryClick = { categoryName ->
-                onNavigate(Routes.JajaninRestaurantListRoute(categoryName))
+            onRestaurantClick = {
+                onNavigate(Routes.JajaninDetailRoute)
             }
         )
-        else -> {}
+
+        is Routes.JajaninDetailRoute -> JajaninDetailPage(
+            onBack = onBack
+        )
+
     }
 }

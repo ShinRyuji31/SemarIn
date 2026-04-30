@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.application.ui.component.global.AffordableRestaurant
+import com.example.application.ui.component.shared.AffordableRestaurant
 import com.example.application.ui.component.global.Header
 import com.example.application.ui.component.global.SearchBar
 import com.example.application.ui.component.jajanin.JajaninRestaurantList
@@ -17,7 +17,7 @@ import com.example.application.ui.theme.WhiteSoft
 @Composable
 fun JajaninMainPage(
     onBack: () -> Unit,
-    onCategoryClick: (String) -> Unit
+    onRestaurantClick: () -> Unit
 ) {
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -44,20 +44,19 @@ fun JajaninMainPage(
 
             item {
                 AffordableRestaurant()
-                JajaninRestaurantList()
+
+                JajaninRestaurantList(
+                    onRestaurantClick = onRestaurantClick
+                )
+
                 Spacer(modifier = Modifier.height(80.dp))
             }
         }
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter)
-        ) {
-            Header(
-                title = "Jajan-In",
-                onBack = onBack
-            )
-        }
+        Header(
+            title = "Jajan-In",
+            onBack = onBack,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
     }
 }

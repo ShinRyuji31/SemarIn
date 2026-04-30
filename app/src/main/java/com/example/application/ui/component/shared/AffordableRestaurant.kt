@@ -1,4 +1,4 @@
-package com.example.application.ui.component.global
+package com.example.application.ui.component.shared
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

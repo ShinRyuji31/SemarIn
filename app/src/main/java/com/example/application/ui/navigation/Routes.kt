@@ -6,29 +6,22 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface Routes : NavKey {
 
-    @Serializable
-    data object LandingRoute : Routes
+    @Serializable data object LandingRoute : Routes
+    @Serializable data object LoginRoute : Routes
+    @Serializable data object SignUpRoute : Routes
+    @Serializable data object DashBoardRoute : Routes
+    @Serializable data object ProfileRoute : Routes
 
-    @Serializable
-    data object LoginRoute : Routes
+    //ANTER FLOW
+    @Serializable data object AnterPickupInputRoute : Routes
+    @Serializable data object AnterPickupMapRoute : Routes
+    @Serializable data object AnterDestinationInputRoute : Routes
+    @Serializable data object AnterDestinationMapRoute : Routes
+    @Serializable data object AnterDestinationSetRoute : Routes
+    @Serializable data object AnterFindingDriverRoute : Routes
 
+    // JAJAN
+    @Serializable data object JajaninMainRoute : Routes
     @Serializable
-    data object SignUpRoute : Routes
-
-    @Serializable
-    data object DashBoardRoute : Routes
-
-    @Serializable
-    data object ProfileRoute : Routes
-
-    @Serializable
-    data object AnjeminScreenRoute : Routes
-
-    @Serializable
-    data object JajaninMainRoute : Routes
-
-    @Serializable
-    data class JajaninRestaurantListRoute(
-        val category: String
-    ) : Routes
+    data object JajaninDetailRoute : Routes
 }
