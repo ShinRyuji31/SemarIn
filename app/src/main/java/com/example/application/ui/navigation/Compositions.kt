@@ -3,7 +3,8 @@ package com.example.application.ui.navigation
 import androidx.compose.runtime.Composable
 import com.example.application.ui.screen.*
 import com.example.application.ui.screen.anterin.*
-import com.example.application.ui.screen.jajanin.*
+import com.example.application.ui.screen.shared.delivery.DeliveryDetailPage
+import com.example.application.ui.screen.shared.delivery.DeliveryMainPage
 
 @Composable
 fun AppNavigation(
@@ -82,14 +83,14 @@ fun AppNavigation(
 
         // JAJAN FLOW ==============================================================
 
-        is Routes.JajaninMainRoute -> JajaninMainPage(
+        is Routes.JajaninMainRoute -> DeliveryMainPage(
             onBack = onBack,
             onRestaurantClick = {
                 onNavigate(Routes.JajaninDetailRoute)
             }
         )
 
-        is Routes.JajaninDetailRoute -> JajaninDetailPage(
+        is Routes.JajaninDetailRoute -> DeliveryDetailPage(
             onBack = onBack
         )
 

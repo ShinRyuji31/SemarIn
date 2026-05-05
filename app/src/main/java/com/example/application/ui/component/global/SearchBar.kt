@@ -14,8 +14,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.BluePrimary
 import com.example.application.ui.theme.GrayMedium
 
@@ -30,8 +32,17 @@ fun SearchBar(
         value = text,
         onValueChange = { text = it },
 
+        textStyle = TextStyle(
+            fontSize = 12.sp,
+            color = Color.Black
+        ),
+
         placeholder = {
-            Text(placeholderText, fontSize = 12.sp)
+            Text(
+                placeholderText,
+                fontSize = 12.sp,
+                color = BlackSoft
+            )
         },
 
         singleLine = true,

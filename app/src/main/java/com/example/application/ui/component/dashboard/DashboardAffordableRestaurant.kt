@@ -1,4 +1,4 @@
-package com.example.application.ui.component.shared
+package com.example.application.ui.component.dashboard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -29,7 +29,7 @@ data class Resto(
 )
 
 @Composable
-fun AffordableRestaurant() {
+fun DashboardAffordableRestaurant() {
 
     val restos = listOf(
         Resto("Kopi Kenangan", "⭐ 4.8 • 1.2km", R.drawable.resto_kopikenangan),
@@ -79,8 +79,8 @@ fun AffordableRestaurant() {
                         )
 
                         Column(modifier = Modifier.padding(8.dp)) {
-                            Text(resto.name, fontWeight = FontWeight.Bold, color = Color.Black)
-                            Text(resto.rating, fontSize = 12.sp, color = Color.Black)
+                            Text(resto.name, fontWeight = FontWeight.Bold, color = BlackSoft)
+                            Text(resto.rating, fontSize = 12.sp, color = BlackSoft)
                         }
                     }
                 }

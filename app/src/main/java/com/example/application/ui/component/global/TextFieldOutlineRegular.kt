@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.application.ui.theme.BlackSoft
 
 @Composable
 fun TextFieldOutlineRegular(
@@ -36,9 +37,9 @@ fun TextFieldOutlineRegular(
         shape = RoundedCornerShape(12.dp),
 
         colors = OutlinedTextFieldDefaults.colors(
-            focusedTextColor = Color.Black,
-            unfocusedTextColor = Color.Black,
-            cursorColor = Color.Black
+            focusedTextColor = BlackSoft,
+            unfocusedTextColor = BlackSoft,
+            cursorColor = BlackSoft
         )
     )
 }

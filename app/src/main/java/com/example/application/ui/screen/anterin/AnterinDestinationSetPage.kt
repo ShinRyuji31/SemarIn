@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.sp
 import com.example.application.R
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.Header
+import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.BluePrimary
+import com.example.application.ui.theme.GrayDark
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable
@@ -127,14 +129,14 @@ fun LocationItem(title: String, subtitle: String) {
             painter = painterResource(id = R.drawable.ic_location),
             contentDescription = null,
             modifier = Modifier.size(20.dp),
-            tint = Color.Black
+            tint = BlackSoft
         )
 
         Spacer(modifier = Modifier.width(8.dp))
 
         Column {
             Text(title, fontWeight = FontWeight.Bold, fontSize = 13.sp)
-            Text(subtitle, fontSize = 12.sp, color = Color.Gray)
+            Text(subtitle, fontSize = 12.sp, color = GrayDark)
         }
     }
 }
@@ -184,7 +186,7 @@ fun VehicleItem(
         Text(
             price,
             fontWeight = FontWeight.Bold,
-            color = if (isSelected) Color(0xFF2D9CDB) else Color.Black
+            color = if (isSelected) BluePrimary else BlackSoft
         )
     }
 }

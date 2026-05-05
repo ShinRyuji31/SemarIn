@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.example.application.R
 import com.example.application.ui.component.global.Header
 import com.example.application.ui.theme.BluePrimary
+import com.example.application.ui.theme.WhiteSoft
 
 enum class DriverState {
     FINDING,
@@ -64,7 +65,7 @@ fun AnterinFindingDriverPage(
                 text = title,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = WhiteSoft
             )
 
             Spacer(modifier = Modifier.height(6.dp))
@@ -72,7 +73,7 @@ fun AnterinFindingDriverPage(
             Text(
                 text = subtitle,
                 fontSize = 14.sp,
-                color = Color.White
+                color = WhiteSoft
             )
 
             Spacer(modifier = Modifier.height(32.dp))

@@ -1,4 +1,4 @@
-package com.example.application.ui.screen.jajanin
+package com.example.application.ui.screen.shared.delivery
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,14 +8,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.application.ui.component.shared.AffordableRestaurant
 import com.example.application.ui.component.global.Header
 import com.example.application.ui.component.global.SearchBar
 import com.example.application.ui.component.jajanin.JajaninRestaurantList
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun JajaninMainPage(
+fun DeliveryMainPage(
     onBack: () -> Unit,
     onRestaurantClick: () -> Unit
 ) {

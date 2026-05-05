@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
 fun ItemCard(
@@ -42,10 +43,10 @@ fun ItemCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 6.dp)
             .clip(RoundedCornerShape(20.dp))
-            .background(Color.White)
+            .background(WhiteSoft)
             .border(
                 width = 1.dp,
-                color = Color(0xFFD9D9D9),
+                color = WhiteSoft,
                 shape = RoundedCornerShape(20.dp)
             )
             .clickable { onClick() }
@@ -86,7 +87,6 @@ fun ItemCard(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_star),
                     contentDescription = null,
-                    tint = Color(0xFFFFC107),
                     modifier = Modifier.size(18.dp)
                 )
 

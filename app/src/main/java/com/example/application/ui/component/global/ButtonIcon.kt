@@ -50,7 +50,7 @@ fun ButtonIcon(
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = title,
-                tint = Color.Black,
+                tint = BlackSoft,
                 modifier = Modifier.size(32.dp)
             )
 

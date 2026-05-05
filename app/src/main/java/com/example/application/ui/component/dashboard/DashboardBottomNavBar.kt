@@ -11,6 +11,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
+import com.example.application.ui.theme.BlackSoft
+import com.example.application.ui.theme.BluePrimary
 import com.example.application.ui.theme.WhiteSoft
 
 @Composable
@@ -52,12 +54,12 @@ fun DashboardBottomNavBar(
                             painter = painterResource(id = icons[index]),
                             contentDescription = label,
                             modifier = Modifier.size(32.dp),
-                            tint = if (isSelected) MaterialTheme.colorScheme.primary else Color.Black
+                            tint = if (isSelected) BluePrimary else BlackSoft
                         )
                         Text(
                             text = label,
                             fontSize = 10.sp,
-                            color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Black
+                            color = if (isSelected) BluePrimary else BlackSoft
                         )
                     }
                 },

@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.ui.component.dashboard.*
-import com.example.application.ui.component.shared.AffordableRestaurant
+import com.example.application.ui.component.dashboard.DashboardAffordableRestaurant
 import com.example.application.ui.component.global.SearchBar
 import androidx.compose.material3.*
 import com.example.application.ui.theme.WhiteSoft
@@ -124,7 +124,7 @@ fun DashboardScreen(
                         )
 
                         DashboardLastOrder()
-                        AffordableRestaurant()
+                        DashboardAffordableRestaurant()
                         DashboardBottomBanner()
 
                         Spacer(modifier = Modifier.height(80.dp))

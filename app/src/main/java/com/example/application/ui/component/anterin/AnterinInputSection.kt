@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayMedium
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
 fun AnterinInputSection(
@@ -44,7 +45,7 @@ fun AnterinInputSection(
             enabled = false,
             colors = OutlinedTextFieldDefaults.colors(
                 disabledBorderColor = GrayMedium,
-                disabledContainerColor = Color.White
+                disabledContainerColor = WhiteSoft
             )
         )
     }

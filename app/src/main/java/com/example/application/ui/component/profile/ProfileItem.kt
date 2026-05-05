@@ -38,7 +38,7 @@ fun ProfileItem(
             painter = painterResource(id = icon),
             contentDescription = null,
             modifier = Modifier.size(22.dp),
-            tint = Color.Black
+            tint = BlackSoft
         )
 
         Spacer(modifier = Modifier.width(16.dp))

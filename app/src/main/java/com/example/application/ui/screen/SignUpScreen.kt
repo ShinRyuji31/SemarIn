@@ -30,6 +30,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import com.example.application.R
 import com.example.application.ui.component.global.ButtonSocial
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
 fun SignUpScreen(
@@ -53,7 +54,7 @@ fun SignUpScreen(
                 .padding(24.dp)
                 .align(Alignment.Center)
                 .background(
-                    color = MaterialTheme.colorScheme.background,
+                    color = WhiteSoft,
                     shape = RoundedCornerShape(20.dp)
                 )
                 .padding(24.dp)

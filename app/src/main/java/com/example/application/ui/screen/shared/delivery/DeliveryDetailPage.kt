@@ -1,11 +1,10 @@
-package com.example.application.ui.screen.jajanin
+package com.example.application.ui.screen.shared.delivery
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +19,7 @@ import com.example.application.ui.component.jajanin.menu.JajaninMenuSection
 import com.example.application.ui.component.jajanin.menu.dummyMenu
 
 @Composable
-fun JajaninDetailPage(
+fun DeliveryDetailPage(
     onBack: () -> Unit
 ) {
 

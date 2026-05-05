@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.application.ui.theme.GrayDark
+import com.example.application.ui.theme.WhiteSoft
 
 @Composable
 fun ButtonSocial(icon: Int) {
@@ -19,12 +21,12 @@ fun ButtonSocial(icon: Int) {
         modifier = Modifier
             .size(width = 70.dp, height = 60.dp)
             .background(
-                color = Color.White,
+                color = WhiteSoft,
                 shape = RoundedCornerShape(12.dp)
             )
             .border(
                 width = 1.dp,
-                color = Color.Gray,
+                color = GrayDark,
                 shape = RoundedCornerShape(12.dp)
             ),
         contentAlignment = Alignment.Center

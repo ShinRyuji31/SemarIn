@@ -20,6 +20,7 @@ import com.example.application.R
 import com.example.application.ui.component.global.ButtonBlue
 import com.example.application.ui.component.global.ButtonSocial
 import com.example.application.ui.component.global.TextFieldOutlineRegular
+import com.example.application.ui.theme.WhiteSoft
 import com.example.application.ui.theme.blueWhiteGradient
 
 @Composable
@@ -43,7 +44,7 @@ fun LoginScreen(
                 .padding(horizontal = 24.dp)
                 .align(Alignment.Center)
                 .background(
-                    color = Color.White,
+                    color = WhiteSoft,
                     shape = RoundedCornerShape(28.dp)
                 )
                 .padding(horizontal = 20.dp, vertical = 24.dp)
