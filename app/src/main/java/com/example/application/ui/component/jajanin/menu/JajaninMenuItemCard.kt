@@ -2,19 +2,21 @@ package com.example.application.ui.component.jajanin.menu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.application.R
+import com.example.application.ui.theme.GrayDark
 
 @Composable
 fun JajaninMenuItemCard(
@@ -26,7 +28,14 @@ fun JajaninMenuItemCard(
 ) {
     Column(
         modifier = modifier
-            .width(140.dp)
+            .width(160.dp)
+            .border(
+                width = 1.dp,
+                color = GrayDark,
+                shape = RoundedCornerShape(12.dp)
+            )
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color.White)
     ) {
 
         Box {
@@ -35,32 +44,42 @@ fun JajaninMenuItemCard(
                 contentDescription = null,
                 modifier = Modifier
                     .height(120.dp)
-                    .fillMaxWidth()
-                    .background(Color(0xFFFFD600), RoundedCornerShape(16.dp)),
+                    .fillMaxWidth(),
                 contentScale = ContentScale.Crop
             )
 
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(6.dp)
-                    .size(24.dp)
+                    .padding(8.dp)
+                    .size(28.dp)
                     .background(Color(0xFF2D9CDB), shape = RoundedCornerShape(50)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_star),
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(14.dp)
+                Text(
+                    text = "+",
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Column(
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Text(
+                text = name,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1
+            )
 
-        Text(name, fontSize = 12.sp)
-
-        Text(price, fontSize = 12.sp, color = Color.Gray)
+            Text(
+                text = price,
+                fontSize = 11.sp,
+                color = Color.Gray
+            )
+        }
     }
 }

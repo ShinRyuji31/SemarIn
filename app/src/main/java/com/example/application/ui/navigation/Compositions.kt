@@ -3,6 +3,7 @@ package com.example.application.ui.navigation
 import androidx.compose.runtime.Composable
 import com.example.application.ui.screen.*
 import com.example.application.ui.screen.anterin.*
+import com.example.application.ui.screen.cart.CartScreen
 import com.example.application.ui.screen.shared.delivery.DeliveryDetailPage
 import com.example.application.ui.screen.shared.delivery.DeliveryMainPage
 
@@ -91,6 +92,12 @@ fun AppNavigation(
         )
 
         is Routes.JajaninDetailRoute -> DeliveryDetailPage(
+            onBack = onBack,
+            onCartClick = { onNavigate(Routes.CartRoute) }
+        )
+
+        // CART ====================================================================
+        is Routes.CartRoute -> CartScreen(
             onBack = onBack
         )
 

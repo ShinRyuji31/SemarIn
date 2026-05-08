@@ -22,6 +22,8 @@ sealed interface Routes : NavKey {
 
     // JAJAN
     @Serializable data object JajaninMainRoute : Routes
-    @Serializable
-    data object JajaninDetailRoute : Routes
+    @Serializable data object JajaninDetailRoute : Routes
+    
+    // CART
+    @Serializable data object CartRoute : Routes
 }

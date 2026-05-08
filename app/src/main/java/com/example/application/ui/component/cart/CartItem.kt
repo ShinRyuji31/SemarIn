@@ -2,67 +2,82 @@ package com.example.application.ui.component.cart
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
-import com.example.application.ui.theme.GrayDark
-import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun CartItem() {
-
+fun CartItem(
+    name: String,
+    price: String,
+    imageRes: Int,
+    quantity: Int,
+    hasYellowBg: Boolean = false
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 6.dp)
-            .background(WhiteSoft, RoundedCornerShape(12.dp))
+            .padding(vertical = 8.dp)
+            .border(1.dp, Color.LightGray.copy(alpha = 0.5f), RoundedCornerShape(12.dp))
+            .background(Color.White, RoundedCornerShape(12.dp))
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Image(
-            painter = painterResource(id = R.drawable.change_this_to_correct_pic),
-            contentDescription = null,
+        Box(
             modifier = Modifier
-                .size(60.dp)
-                .clip(RoundedCornerShape(8.dp)),
-            contentScale = ContentScale.Crop
-        )
+                .size(70.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(if (hasYellowBg) Color(0xFFFFD600) else Color.Transparent)
+        ) {
+            Image(
+                painter = painterResource(id = imageRes),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
 
         Spacer(modifier = Modifier.width(12.dp))
 
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text("Classic Eclair - Cookies & Cream", fontSize = 13.sp)
-            Text("Rp152000", fontSize = 12.sp, color = GrayDark)
+            Text(
+                text = name,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+            Text(
+                text = price,
+                fontSize = 12.sp,
+                color = Color.Gray
+            )
         }
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
             CircleButton("-")
-
-            Spacer(modifier = Modifier.width(6.dp))
-
-            Text("1")
-
-            Spacer(modifier = Modifier.width(6.dp))
-
+            Text(
+                text = quantity.toString(),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
+            )
             CircleButton("+")
         }
     }

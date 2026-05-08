@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
 import com.example.application.data.model.Restaurant
+import com.example.application.ui.component.global.RatingStar
 import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayMedium
 import com.example.application.ui.theme.Yellow
@@ -98,12 +99,7 @@ fun DashboardAffordableRestaurant(
                             Row(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_star),
-                                    contentDescription = null,
-                                    modifier = Modifier.size(18.dp),
-                                    tint = Yellow
-                                )
+                                RatingStar()
 
                                 Spacer(modifier = Modifier.width(4.dp))
 

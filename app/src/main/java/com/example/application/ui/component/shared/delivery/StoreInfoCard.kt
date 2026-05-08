@@ -1,74 +1,94 @@
 package com.example.application.ui.component.shared.delivery
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.data.model.Restaurant
+import com.example.application.ui.theme.GrayDark
 
 @Composable
 fun StoreInfoCard(
     restaurant: Restaurant
-){
-    Box(
+) {
+    Column(
         modifier = Modifier
-            .offset(y = (-20).dp)
+            .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .background(Color.White, shape = RoundedCornerShape(16.dp))
-            .padding(16.dp)
     ) {
-
-        Column {
-
-            Text(
-                (restaurant.name),
-                fontSize = 18.sp
-            )
-
-            Text(
-                (restaurant.address),
-                fontSize = 12.sp,
-                color = Color.Gray
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text("Opening Hours:", fontSize = 12.sp, fontWeight = Bold)
-            Text(
-                "${restaurant.openTime} - ${restaurant.closeTime} WIB (${restaurant.openDays})",
-                fontSize = 12.sp
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-
-                Text(
-                    text = "⭐ ${restaurant.rating}",
-                    fontSize = 12.sp
+        // White Card
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White, shape = RoundedCornerShape(16.dp))
+                .border(
+                    width = 1.dp,
+                    color = Color.LightGray.copy(alpha = 0.5f),
+                    shape = RoundedCornerShape(16.dp)
                 )
+                .padding(20.dp)
+        ) {
+            Column {
+                Text(
+                    text = restaurant.name,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                
+                Spacer(modifier = Modifier.height(4.dp))
+                
+                Text(
+                    text = restaurant.address,
+                    fontSize = 13.sp,
+                    color = Color.Gray
+                )
+                
+                Spacer(modifier = Modifier.height(12.dp))
+                
+                Text(
+                    text = "Opening Hours",
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "${restaurant.openTime} - ${restaurant.closeTime} WIB (${restaurant.openDays})",
+                    fontSize = 13.sp,
+                    color = Color.Gray
+                )
+            }
+        }
 
-                restaurant.tags.forEach { tag ->
+        Spacer(modifier = Modifier.height(16.dp))
 
-                    StoreTag(
-                        text = tag
-                    )
-                }
+        // Rating and Tags (Below the card)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.padding(horizontal = 4.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "⭐",
+                    fontSize = 16.sp
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = restaurant.rating.toString(),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            restaurant.tags.forEach { tag ->
+                StoreTag(text = tag)
             }
         }
     }
