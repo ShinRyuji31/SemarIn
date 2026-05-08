@@ -16,6 +16,7 @@ fun DeliveryItemList(
     restaurants: List<Restaurant>,
     onRestaurantClick: (Restaurant) -> Unit
 ) {
+
     Column {
 
         Text(
@@ -27,12 +28,9 @@ fun DeliveryItemList(
         Spacer(modifier = Modifier.height(8.dp))
 
         restaurants.forEach { restaurant ->
+
             DeliveryItemCard(
-                name = restaurant.name,
-                address = restaurant.address,
-                rating = restaurant.rating,
-                imageRes = restaurant.imageRes,
-                promo = "diskon 5rb",
+                restaurant = restaurant,
                 onClick = {
                     onRestaurantClick(restaurant)
                 }

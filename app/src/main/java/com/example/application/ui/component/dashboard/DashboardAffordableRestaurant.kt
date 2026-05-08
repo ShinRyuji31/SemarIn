@@ -8,8 +8,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -18,9 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.application.R
 import com.example.application.data.model.Restaurant
 import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayMedium
+import com.example.application.ui.theme.Yellow
 
 @Composable
 fun DashboardAffordableRestaurant(
@@ -91,11 +95,25 @@ fun DashboardAffordableRestaurant(
                                 color = BlackSoft
                             )
 
-                            Text(
-                                text = "⭐ ${resto.rating}",
-                                fontSize = 12.sp,
-                                color = BlackSoft
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_star),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(18.dp),
+                                    tint = Yellow
+                                )
+
+                                Spacer(modifier = Modifier.width(4.dp))
+
+                                Text(
+                                    text = "${resto.rating}",
+                                    fontSize = 12.sp,
+                                    color = BlackSoft
+                                )
+                            }
+
                         }
                     }
                 }

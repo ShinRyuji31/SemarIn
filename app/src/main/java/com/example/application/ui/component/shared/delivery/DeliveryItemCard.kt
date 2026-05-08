@@ -4,15 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -27,23 +19,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.R
-import com.example.application.ui.theme.BluePrimary
+import com.example.application.data.model.Restaurant
+import com.example.application.ui.theme.BlackSoft
 import com.example.application.ui.theme.GrayDark
 import com.example.application.ui.theme.WhiteSoft
+import com.example.application.ui.theme.Yellow
 
 @Composable
 fun DeliveryItemCard(
-    name: String,
-    address: String,
-    rating: Double,
-    imageRes: Int,
-    promo: String,
-    onClick: () -> Unit
+    restaurant: Restaurant,
+    onClick: () -> Unit = {}
 ) {
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .height(120.dp)
             .padding(horizontal = 16.dp, vertical = 6.dp)
             .clip(RoundedCornerShape(20.dp))
             .background(WhiteSoft)
@@ -56,11 +47,11 @@ fun DeliveryItemCard(
     ) {
 
         Image(
-            painter = painterResource(id = imageRes),
+            painter = painterResource(id = restaurant.imageRes),
             contentDescription = null,
             modifier = Modifier
                 .width(100.dp)
-                .height(100.dp)
+                .fillMaxHeight()
                 .clip(
                     RoundedCornerShape(
                         topStart = 20.dp,
@@ -76,29 +67,49 @@ fun DeliveryItemCard(
                 .weight(1f)
         ) {
 
-            Text(name, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(
+                text = restaurant.name,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                color = BlackSoft
+            )
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(address, fontSize = 12.sp, color = Color.Gray)
+
+            Text(
+                text = restaurant.address,
+                fontSize = 12.sp,
+                color = Color.Gray
+            )
 
             Spacer(modifier = Modifier.height(2.dp))
-            Text(promo, fontSize = 12.sp, color = Color.Gray)
+
+            Text(
+                text = restaurant.promo,
+                fontSize = 12.sp,
+                color = Color.Gray
+            )
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
                 Icon(
                     painter = painterResource(id = R.drawable.ic_star),
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(18.dp),
+                    tint = Yellow
                 )
 
                 Spacer(modifier = Modifier.width(4.dp))
 
                 Text(
-                    text = rating.toString(),
+                    text = restaurant.rating.toString(),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = BlackSoft
                 )
             }
         }

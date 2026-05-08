@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.application.data.model.Restaurant
-import com.example.application.ui.component.shared.delivery.StoreInfoCard
+import com.example.application.ui.component.shared.delivery.DeliveryItemCard
 import com.example.application.ui.theme.BlackSoft
 
 @Composable
@@ -20,7 +20,7 @@ fun DashboardLastOrder(
     if (restaurant == null) return
 
     Column(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(8.dp)
     ) {
 
         Text(
@@ -30,7 +30,7 @@ fun DashboardLastOrder(
             color = BlackSoft
         )
 
-        StoreInfoCard(
+        DeliveryItemCard(
             restaurant = restaurant
         )
     }
