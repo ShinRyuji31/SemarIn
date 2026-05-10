@@ -1,47 +1,45 @@
 package com.example.application.ui.component.global
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.application.ui.theme.BluePrimary
-import com.example.application.ui.theme.WhiteSoft
 
 @Composable
-fun ButtonWhite(
+fun CircleButton(
     text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
 
     Box(
         modifier = modifier
+            .size(28.dp)
             .background(
-                color = WhiteSoft,
-                shape = RoundedCornerShape(10.dp)
-            )
-            .border(
-                width = 2.dp,
                 color = BluePrimary,
-                shape = RoundedCornerShape(10.dp)
+                shape = CircleShape
             )
             .clickable {
                 onClick()
-            }
-            .padding(vertical = 14.dp),
+            },
         contentAlignment = Alignment.Center
     ) {
 
         Text(
             text = text,
-            color = BluePrimary
+            color = Color.White,
+            fontSize = 18.sp,
+            modifier = Modifier.offset(y = (-1).dp)
         )
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.application.ui.component.global.CircleButton
 import com.example.application.ui.theme.GrayDark
 
 @Composable
@@ -47,38 +48,34 @@ fun DeliveryInventoryItemCard(
                     .fillMaxWidth(),
                 contentScale = ContentScale.Crop
             )
-
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(8.dp)
-                    .size(28.dp)
-                    .background(Color(0xFF2D9CDB), shape = RoundedCornerShape(50)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "+",
-                    color = Color.White,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
         }
 
-        Column(
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(
-                text = name,
-                fontSize = 13.sp,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1
-            )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ){
+            Column() {
+                Text(
+                    text = name,
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                )
 
-            Text(
-                text = price,
-                fontSize = 11.sp,
-                color = Color.Gray
+                Text(
+                    text = price,
+                    fontSize = 11.sp,
+                    color = Color.Gray
+                )
+            }
+
+            CircleButton(
+                text = "+",
+                modifier = Modifier.size(20.dp),
+                onClick = {}
             )
         }
     }

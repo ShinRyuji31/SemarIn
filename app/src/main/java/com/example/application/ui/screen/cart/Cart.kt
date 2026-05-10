@@ -43,7 +43,6 @@ fun CartScreen(
                         price = "Rp89000",
                         imageRes = R.drawable.dummy,
                         quantity = 1,
-                        hasYellowBg = true
                     )
                 }
                 item {
@@ -52,7 +51,6 @@ fun CartScreen(
                         price = "Rp151200",
                         imageRes = R.drawable.dummy,
                         quantity = 2,
-                        hasYellowBg = true
                     )
                 }
                 item {
@@ -61,7 +59,6 @@ fun CartScreen(
                         price = "Rp297000",
                         imageRes = R.drawable.dummy,
                         quantity = 1,
-                        hasYellowBg = false
                     )
                 }
             }

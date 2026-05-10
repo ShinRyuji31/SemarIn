@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.application.R
+import com.example.application.ui.component.global.CircleButton
 
 @Composable
 fun CartItem(
@@ -24,7 +24,6 @@ fun CartItem(
     price: String,
     imageRes: Int,
     quantity: Int,
-    hasYellowBg: Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -40,7 +39,7 @@ fun CartItem(
             modifier = Modifier
                 .size(70.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(if (hasYellowBg) Color(0xFFFFD600) else Color.Transparent)
+                .background(Color.Transparent)
         ) {
             Image(
                 painter = painterResource(id = imageRes),
@@ -72,13 +71,21 @@ fun CartItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            CircleButton("-")
+            CircleButton(
+                text = "-",
+                modifier = Modifier.size(20.dp),
+                onClick = {}
+            )
             Text(
                 text = quantity.toString(),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
             )
-            CircleButton("+")
+            CircleButton(
+                text = "+",
+                modifier = Modifier.size(20.dp),
+                onClick = {}
+            )
         }
     }
 }
