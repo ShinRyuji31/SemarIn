@@ -25,6 +25,8 @@ import com.example.application.ui.component.global.Header
 import com.example.application.ui.component.shared.delivery.store.StoreInfoCard
 import com.example.application.ui.component.shared.delivery.inventory.DeliveryInventorySection
 import com.example.application.viewmodel.StoreViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.application.viewmodel.CartViewModel
 
 @Composable
 fun DeliveryDetailPage(
@@ -42,6 +44,9 @@ fun DeliveryDetailPage(
     val filteredInventory = selectedStore?.let { store ->
         inventory.filter { it.storeId == store.id }
     } ?: emptyList()
+
+    val cartViewModel: CartViewModel = viewModel()
+    val cartItems by cartViewModel.cartItems.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
         LazyColumn(
@@ -80,7 +85,13 @@ fun DeliveryDetailPage(
                     groupedInventory.forEach { (category, items) ->
                         DeliveryInventorySection(
                             title = category,
-                            items = items
+                            items = items,
+                            onAddToCart = { inventory ->
+
+                                cartViewModel.addToCart(
+                                    inventory.id
+                                )
+                            }
                         )
                     }
                 }
@@ -118,7 +129,7 @@ fun DeliveryDetailPage(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "0",
+                        text = cartItems.sumOf { it.quantity }.toString(),
                         color = Color.White,
                         fontSize = 10.sp
                     )

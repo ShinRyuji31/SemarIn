@@ -1,29 +1,20 @@
 package com.example.application.data.repository
 
+import com.example.application.data.local.CartDataStore
 import com.example.application.data.model.CartItem
+import kotlinx.coroutines.flow.Flow
 
-class CartRepository {
+class CartRepository(
+    private val dataStore: CartDataStore
+) {
 
-    fun getCartItems(): List<CartItem> {
-        return listOf(
+    fun getCartItems(): Flow<List<CartItem>> {
+        return dataStore.getCartItems()
+    }
 
-            CartItem(
-                id = "cart_1",
-                storeInventoryId = "F1016",
-                quantity = 1
-            ),
-
-            CartItem(
-                id = "cart_2",
-                storeInventoryId = "F1017",
-                quantity = 2
-            ),
-
-            CartItem(
-                id = "cart_3",
-                storeInventoryId = "F1010",
-                quantity = 1
-            )
-        )
+    suspend fun saveCartItems(
+        items: List<CartItem>
+    ) {
+        dataStore.saveCartItems(items)
     }
 }

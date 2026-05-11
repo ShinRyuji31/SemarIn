@@ -25,7 +25,7 @@ fun DeliveryInventoryItemCard(
     price: String,
     imageRes: Int,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onAddToCart: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -75,7 +75,7 @@ fun DeliveryInventoryItemCard(
             CircleButton(
                 text = "+",
                 modifier = Modifier.size(20.dp),
-                onClick = {}
+                onClick = onAddToCart
             )
         }
     }

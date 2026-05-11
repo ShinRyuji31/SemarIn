@@ -12,7 +12,8 @@ import com.example.application.util.toRupiah
 @Composable
 fun DeliveryInventorySection(
     title: String,
-    items: List<StoreInventory>
+    items: List<StoreInventory>,
+    onAddToCart: (StoreInventory) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
 
@@ -27,7 +28,10 @@ fun DeliveryInventorySection(
                 DeliveryInventoryItemCard(
                     name = item.name,
                     price = item.price.toRupiah(),
-                    imageRes = item.imageRes
+                    imageRes = item.imageRes,
+                    onAddToCart = {
+                        onAddToCart(item)
+                    }
                 )
             }
         }
