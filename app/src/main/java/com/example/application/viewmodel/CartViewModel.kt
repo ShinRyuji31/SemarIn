@@ -21,10 +21,7 @@ class CartViewModel : ViewModel() {
 
     val cartItems = _cartItems.asStateFlow()
 
-    // =========================
     // PRICE STATES
-    // =========================
-
     val subtotal = cartItems.map { carts ->
 
         carts.sumOf { cart ->
@@ -43,10 +40,7 @@ class CartViewModel : ViewModel() {
         it + deliveryFee.value
     }
 
-    // =========================
     // QUANTITY
-    // =========================
-
     fun increaseQuantity(cartId: String) {
 
         _cartItems.value = _cartItems.value.map { cart ->
@@ -75,10 +69,7 @@ class CartViewModel : ViewModel() {
         }
     }
 
-    // =========================
     // INVENTORY
-    // =========================
-
     fun getInventoryById(
         inventoryId: String
     ): StoreInventory? {
