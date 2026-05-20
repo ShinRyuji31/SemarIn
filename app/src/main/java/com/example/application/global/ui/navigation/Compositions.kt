@@ -2,10 +2,9 @@ package com.example.application.global.ui.navigation
 
 import androidx.compose.runtime.Composable
 import com.example.application.anterin.ui.screen.AnterinDestinationSetPage
-import com.example.application.anterin.ui.screen.AnterinFindingDriverPage
 import com.example.application.anterin.ui.screen.AnterinMainPage
+import com.example.application.anterin.ui.screen.AnterinOrderStatusPage
 import com.example.application.anterin.ui.screen.AnterinSearchPage
-import com.example.application.anterin.ui.screen.DriverState
 import com.example.application.anterin.ui.screen.MainMode
 import com.example.application.anterin.ui.screen.MapMode
 import com.example.application.auth.ui.screen.LoginScreen
@@ -13,10 +12,10 @@ import com.example.application.auth.ui.screen.ProfileScreen
 import com.example.application.auth.ui.screen.SignUpScreen
 import com.example.application.dashboard.ui.screen.DashboardScreen
 import com.example.application.delivery.data.model.StoreType
-import com.example.application.delivery.ui.screen.CartPage
-import com.example.application.delivery.ui.screen.DeliveryDetailPage
-import com.example.application.delivery.ui.screen.DeliveryMainPage
-import com.example.application.global.ui.screen.LandingScreen
+import com.example.application.delivery.ui.screen.*
+import com.example.application.shared.findingdriver.ui.screen.LandingScreen
+import com.example.application.global.ui.screen.shared.findingdriver.FindingDriverPage
+import com.example.application.orderhistory.ui.screen.OrderHistoryScreen
 
 @Composable
 fun AppNavigation(
@@ -48,12 +47,23 @@ fun AppNavigation(
             onProfileClick = { onNavigate(Routes.ProfileRoute) },
             onAnjeminClick = { onNavigate(Routes.AnterPickupInputRoute) },
             onJajaninClick = { onNavigate(Routes.JajaninMainRoute) },
-            onJastipinClick = { onNavigate(Routes.JastipinMainRoute) }
+            onJastipinClick = { onNavigate(Routes.JastipinMainRoute) },
+            onOrderStatusClick = { onNavigate(Routes.AnterOrderStatusRoute) },
+            onOrderHistoryClick = { onNavigate(Routes.OrderHistoryRoute) }
         )
 
         is Routes.ProfileRoute -> ProfileScreen(
             onBack = onBack,
-            onHomeClick = { onNavigate(Routes.DashBoardRoute) }
+            onHomeClick = { onNavigate(Routes.DashBoardRoute) },
+            onOrderStatusClick = { onNavigate(Routes.AnterOrderStatusRoute) },
+            onOrderHistoryClick = { onNavigate(Routes.OrderHistoryRoute) }
+        )
+
+        is Routes.OrderHistoryRoute -> OrderHistoryScreen(
+            onBack = onBack,
+            onHomeClick = { onNavigate(Routes.DashBoardRoute) },
+            onOrderStatusClick = { onNavigate(Routes.AnterOrderStatusRoute) },
+            onProfileClick = { onNavigate(Routes.ProfileRoute) }
         )
 
         // ANTER FLOW 
@@ -88,9 +98,18 @@ fun AppNavigation(
             onFindDriver = { onNavigate(Routes.AnterFindingDriverRoute) }
         )
 
-        is Routes.AnterFindingDriverRoute -> AnterinFindingDriverPage(
-            state = DriverState.FINDING,
-            onBack = onBack
+        is Routes.AnterFindingDriverRoute -> FindingDriverPage(
+            serviceName = "Anter-In",
+            onBack = onBack,
+            onFinished = { onNavigate(Routes.AnterOrderStatusRoute) }
+        )
+
+        is Routes.AnterOrderStatusRoute -> AnterinOrderStatusPage(
+            onBack = onBack,
+            onHomeClick = { onNavigate(Routes.DashBoardRoute) },
+            onProfileClick = { onNavigate(Routes.ProfileRoute) },
+            onChatClick = { onNavigate(Routes.JajaninChatRoute) },
+            onOrderHistoryClick = { onNavigate(Routes.OrderHistoryRoute) }
         )
 
         // JAJAN FLOW
@@ -115,8 +134,27 @@ fun AppNavigation(
             }
         )
 
+        is Routes.JajaninFindingDriverRoute -> FindingDriverPage(
+            serviceName = "Jajan-In",
+            onBack = onBack,
+            onFinished = { onNavigate(Routes.JajaninOrderStatusRoute) }
+        )
+
+        is Routes.JajaninOrderStatusRoute -> JajaninOrderStatusPage(
+            onBack = onBack,
+            onHomeClick = { onNavigate(Routes.DashBoardRoute) },
+            onProfileClick = { onNavigate(Routes.ProfileRoute) },
+            onChatClick = { onNavigate(Routes.JajaninChatRoute) },
+            onOrderHistoryClick = { onNavigate(Routes.OrderHistoryRoute) }
+        )
+
         // CART ====================================================================
         is Routes.CartRoute -> CartPage(
+            onBack = onBack,
+            onCheckout = { onNavigate(Routes.JajaninFindingDriverRoute) }
+        )
+
+        is Routes.JajaninChatRoute -> ChatWithDriverPage(
             onBack = onBack
         )
 

@@ -36,6 +36,7 @@ fun AnterinLocationItem(title: String, subtitle: String) {
             Text(
                 title,
                 fontWeight = FontWeight.Bold,
+                color = BlackSoft,
                 fontSize = 13.sp
             )
             Text(

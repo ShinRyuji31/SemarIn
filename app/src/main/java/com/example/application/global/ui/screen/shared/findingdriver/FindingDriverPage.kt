@@ -1,10 +1,10 @@
-package com.example.application.anterin.ui.screen
+package com.example.application.global.ui.screen.shared.findingdriver
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,6 +16,7 @@ import com.example.application.R
 import com.example.application.global.ui.component.Header
 import com.example.application.global.ui.theme.BluePrimary
 import com.example.application.global.ui.theme.WhiteSoft
+import kotlinx.coroutines.delay
 
 enum class DriverState {
     FINDING,
@@ -23,12 +24,21 @@ enum class DriverState {
 }
 
 @Composable
-fun AnterinFindingDriverPage(
-    state: DriverState,
-    onBack: () -> Unit
+fun FindingDriverPage(
+    serviceName: String = "Anter-In",
+    onBack: () -> Unit,
+    onFinished: () -> Unit,
 ) {
+    var currentState by remember { mutableStateOf(DriverState.FINDING) }
 
-    val (title, subtitle, image) = when (state) {
+    LaunchedEffect(Unit) {
+        delay(3000)
+        currentState = DriverState.FOUND
+        delay(2000)
+        onFinished()
+    }
+
+    val (title, subtitle, image) = when (currentState) {
         DriverState.FINDING -> Triple(
             "Hold on tight.",
             "We are finding a driver for you",
@@ -49,7 +59,7 @@ fun AnterinFindingDriverPage(
     ) {
 
         Header(
-            title = "Anter-In",
+            title = serviceName,
             onBack = onBack
         )
 

@@ -36,6 +36,8 @@ fun DashboardScreen(
     onAnjeminClick: () -> Unit,
     onJajaninClick: () -> Unit,
     onJastipinClick: () -> Unit,
+    onOrderStatusClick: () -> Unit = {},
+    onOrderHistoryClick: () -> Unit = {},
     viewModel: DashboardViewModel = viewModel()
 ) {
 
@@ -89,6 +91,8 @@ fun DashboardScreen(
             DashboardBottomNavBar(
                 currentTab = 0,
                 onHomeClick = { },
+                onOrderStatusClick = onOrderStatusClick,
+                onOrderHistoryClick = onOrderHistoryClick,
                 onProfileClick = onProfileClick
             )
         }

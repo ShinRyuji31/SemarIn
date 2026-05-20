@@ -32,6 +32,8 @@ import com.example.application.auth.ui.viewmodel.ProfileViewModel
 fun ProfileScreen(
     onBack: () -> Unit,
     onHomeClick: () -> Unit,
+    onOrderStatusClick: () -> Unit = {},
+    onOrderHistoryClick: () -> Unit = {},
     viewModel: ProfileViewModel = viewModel()
 ) {
 
@@ -47,6 +49,8 @@ fun ProfileScreen(
             DashboardBottomNavBar(
                 currentTab = 3,
                 onHomeClick = onHomeClick,
+                onOrderStatusClick = onOrderStatusClick,
+                onOrderHistoryClick = onOrderHistoryClick,
                 onProfileClick = { }
             )
         }
@@ -173,6 +177,7 @@ fun ProfileScreen(
                             "Order History",
                             R.drawable.ic_history
                         ) {
+                            onOrderHistoryClick()
                         }
 
                         ProfileItem(

@@ -19,6 +19,8 @@ import com.example.application.global.ui.theme.WhiteSoft
 fun DashboardBottomNavBar(
     currentTab: Int,
     onHomeClick: () -> Unit,
+    onOrderStatusClick: () -> Unit = {},
+    onOrderHistoryClick: () -> Unit = {},
     onProfileClick: () -> Unit
 ) {
 
@@ -43,8 +45,8 @@ fun DashboardBottomNavBar(
                 onClick = {
                     when (index) {
                         0 -> onHomeClick()   
-                        1 -> {}
-                        2 -> {}
+                        1 -> onOrderStatusClick()
+                        2 -> onOrderHistoryClick()
                         3 -> onProfileClick()
                     }
                 },

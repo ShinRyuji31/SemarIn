@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+dependency_map.csv
+dependency_map.dot
+dependency_map.json
+README.md
+README_IMPROVEMENT_ANALYSIS.md

@@ -17,9 +17,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.application.delivery.ui.component.cart.CartItemComponent
 import com.example.application.global.ui.component.ButtonWhite
 import com.example.application.global.ui.component.Header
-import com.example.application.delivery.ui.component.cart.CartItem
 import com.example.application.global.ui.theme.BluePrimary
 import com.example.application.global.ui.theme.BlueSecondary
 import com.example.application.global.util.toRupiah
@@ -28,6 +28,7 @@ import com.example.application.delivery.ui.viewmodel.CartViewModel
 @Composable
 fun CartPage(
     onBack: () -> Unit,
+    onCheckout: () -> Unit,
     viewModel: CartViewModel = viewModel()
 ) {
 
@@ -70,7 +71,7 @@ fun CartPage(
 
                     inventory?.let {
 
-                        CartItem(
+                        CartItemComponent(
                             name = it.name,
                             price = it.price.toRupiah(),
                             imageRes = it.imageRes,
@@ -217,7 +218,7 @@ fun CartPage(
 
                 ButtonWhite(
                     text = "Checkout",
-                    onClick = { },
+                    onClick = onCheckout,
 
                     modifier = Modifier
                         .fillMaxWidth()

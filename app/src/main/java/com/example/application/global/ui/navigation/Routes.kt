@@ -11,6 +11,7 @@ sealed interface Routes : NavKey {
     @Serializable data object SignUpRoute : Routes
     @Serializable data object DashBoardRoute : Routes
     @Serializable data object ProfileRoute : Routes
+    @Serializable data object OrderHistoryRoute : Routes
 
     //ANTER FLOW
     @Serializable data object AnterPickupInputRoute : Routes
@@ -19,11 +20,15 @@ sealed interface Routes : NavKey {
     @Serializable data object AnterDestinationMapRoute : Routes
     @Serializable data object AnterDestinationSetRoute : Routes
     @Serializable data object AnterFindingDriverRoute : Routes
+    @Serializable data object AnterOrderStatusRoute : Routes
 
     // JAJAN
     @Serializable data object JajaninMainRoute : Routes
     @Serializable data object JastipinMainRoute : Routes
     @Serializable data object JajaninDetailRoute : Routes
+    @Serializable data object JajaninFindingDriverRoute : Routes
+    @Serializable data object JajaninOrderStatusRoute : Routes
+    @Serializable data object JajaninChatRoute : Routes
     
     // CART
     @Serializable data object CartRoute : Routes

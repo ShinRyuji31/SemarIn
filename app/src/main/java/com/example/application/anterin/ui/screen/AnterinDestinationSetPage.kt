@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
+import com.example.application.anterin.ui.component.destination.AnterinLocationCard
 import com.example.application.anterin.ui.component.destination.AnterinLocationItem
 import com.example.application.anterin.ui.component.destination.AnterinVehicleItem
 import com.example.application.global.ui.component.ButtonBlue
@@ -65,25 +66,10 @@ fun AnterinDestinationSetPage(
 
             Column {
 
-                Column(
-                    modifier = Modifier
-                        .background(WhiteSoft)
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                ) {
-
-                    AnterinLocationItem(
-                        title = "Pick Up",
-                        subtitle = pickup
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    AnterinLocationItem(
-                        title = "Drop Off",
-                        subtitle = destination
-                    )
-                }
+                AnterinLocationCard(
+                    pickup = pickup,
+                    destination = destination
+                )
 
                 Spacer(
                     modifier = Modifier.height(12.dp)
