@@ -39,10 +39,7 @@ class CartViewModel(
         }
     }
 
-    // =========================
-    // PRICE STATES
-    // =========================
-
+    //Price States
     val subtotal = cartItems.map { carts ->
 
         carts.sumOf { cart ->
@@ -65,10 +62,7 @@ class CartViewModel(
         sub + fee
     }
 
-    // =========================
-    // ADD TO CART
-    // =========================
-
+    //Add to Cart
     fun addToCart(
         inventoryId: String
     ) {
@@ -104,10 +98,7 @@ class CartViewModel(
         }
     }
 
-    // =========================
-    // QUANTITY
-    // =========================
-
+    //Quantity
     fun increaseQuantity(cartId: String) {
 
         viewModelScope.launch {
@@ -152,10 +143,7 @@ class CartViewModel(
         }
     }
 
-    // =========================
-    // INVENTORY
-    // =========================
-
+    //Inventory
     fun getInventoryById(
         inventoryId: String
     ): StoreInventory? {
