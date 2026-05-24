@@ -76,19 +76,14 @@ fun CartItemComponent(
 
             Text(
                 text = name,
-
                 fontSize = 14.sp,
-
                 fontWeight = FontWeight.Bold,
-
                 color = Color.Black
             )
 
             Text(
                 text = price,
-
                 fontSize = 12.sp,
-
                 color = Color.Gray
             )
         }
@@ -105,11 +100,8 @@ fun CartItemComponent(
 
             Text(
                 text = "${quantity}x",
-
                 fontSize = 16.sp,
-
                 fontWeight = FontWeight.Bold,
-
                 color = Color.Black
             )
         }
