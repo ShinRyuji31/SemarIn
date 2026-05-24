@@ -1,51 +1,61 @@
 package com.example.application.auth.ui.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.application.global.ui.component.ButtonBlue
-import com.example.application.global.ui.component.TextFieldOutlineRegular
-import com.example.application.global.ui.theme.blueWhiteGradient
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.foundation.clickable
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
+import com.example.application.auth.ui.viewmodel.AuthUiState
+import com.example.application.auth.ui.viewmodel.SignUpViewModel
+import com.example.application.global.ui.component.ButtonBlue
 import com.example.application.global.ui.component.ButtonSocial
+import com.example.application.global.ui.component.TextFieldOutlineRegular
 import com.example.application.global.ui.theme.WhiteSoft
+import com.example.application.global.ui.theme.blueWhiteGradient
 
 @Composable
 fun SignUpScreen(
     onRegisterSuccess: () -> Unit,
-    onLoginClick: () -> Unit
+    onLoginClick: () -> Unit,
+    viewModel: SignUpViewModel = viewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+    val scrollState = rememberScrollState()
 
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirm by remember { mutableStateOf("") }
+    var username by rememberSaveable { mutableStateOf("") }
+    var firstName by rememberSaveable { mutableStateOf("") }
+    var lastName by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var phoneNumber by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var confirmPassword by rememberSaveable { mutableStateOf("") }
+    
+    var validationError by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(uiState) {
+        if (uiState is AuthUiState.Success) {
+            onRegisterSuccess()
+            viewModel.resetState()
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(brush = blueWhiteGradient())
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,77 +67,54 @@ fun SignUpScreen(
                 )
                 .padding(24.dp)
         ) {
-
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
+            Column(
+                modifier = Modifier.verticalScroll(scrollState),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text("Sign Up", fontSize = 20.sp, fontWeight = Bold)
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Text(
-                    text = "Username",
-                    modifier = Modifier.fillMaxWidth(),
-                    fontWeight = Bold,
-                    fontSize = 15.sp
-                )
+                SignUpField("Username", username) { username = it; validationError = null }
+                SignUpField("First Name", firstName) { firstName = it; validationError = null }
+                SignUpField("Last Name (Optional)", lastName) { lastName = it; validationError = null }
+                SignUpField("Email", email) { email = it; validationError = null }
+                SignUpField("Phone Number", phoneNumber) { phoneNumber = it; validationError = null }
+                SignUpField("Password", password, isPassword = true) { password = it; validationError = null }
+                SignUpField("Confirm Password", confirmPassword, isPassword = true) { confirmPassword = it; validationError = null }
 
-                Spacer(modifier = Modifier.height(2.dp))
-
-                TextFieldOutlineRegular(
-                    value = username,
-                    onValueChange = { username = it },
-                    placeholder = "Username"
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Text(
-                    text = "Password",
-                    modifier = Modifier.fillMaxWidth(),
-                    fontWeight = Bold,
-                    fontSize = 15.sp
-                )
-
-                Spacer(modifier = Modifier.height(2.dp))
-
-                TextFieldOutlineRegular(
-                    value = password,
-                    onValueChange = { password = it },
-                    placeholder = "Password"
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Text(
-                    text = "Confirm Password",
-                    modifier = Modifier.fillMaxWidth(),
-                    fontWeight = Bold,
-                    fontSize = 15.sp
-                )
-
-                Spacer(modifier = Modifier.height(2.dp))
-
-                TextFieldOutlineRegular(
-                    value = confirm,
-                    onValueChange = { confirm = it },
-                    placeholder = "Confirm Password"
-                )
+                val errorMessage = (uiState as? AuthUiState.Error)?.message ?: validationError
+                if (errorMessage != null) {
+                    Text(
+                        text = errorMessage,
+                        color = MaterialTheme.colorScheme.error,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 ButtonBlue(
-                    text = "Sign Up",
+                    text = if (uiState is AuthUiState.Loading) "Registering..." else "Sign Up",
                     onClick = {
-                        if (username.isNotEmpty() &&
-                            password.isNotEmpty() &&
-                            password == confirm
-                        ) {
-                            onRegisterSuccess()
+                        when {
+                            username.isBlank() || firstName.isBlank() || email.isBlank() || phoneNumber.isBlank() || password.isBlank() -> {
+                                validationError = "Please fill all required fields"
+                            }
+                            password != confirmPassword -> {
+                                validationError = "Passwords do not match"
+                            }
+                            else -> {
+                                validationError = null
+                                viewModel.signUp(email, password, username, firstName, lastName, phoneNumber)
+                            }
                         }
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(50.dp),
+                    enabled = uiState !is AuthUiState.Loading
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -136,21 +123,40 @@ fun SignUpScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     ButtonSocial(icon = R.drawable.logo_google)
                     ButtonSocial(icon = R.drawable.logo_facebook)
-
                 }
 
                 Spacer(modifier = Modifier.height(18.dp))
 
                 Text(
                     text = "Already have an account? Login",
-                    modifier = Modifier.clickable {
-                        onLoginClick()
-                    }
+                    modifier = Modifier.clickable { onLoginClick() }
                 )
             }
         }
     }
+}
+
+@Composable
+private fun SignUpField(
+    label: String,
+    value: String,
+    isPassword: Boolean = false,
+    onValueChange: (String) -> Unit
+) {
+    Text(
+        text = label,
+        modifier = Modifier.fillMaxWidth(),
+        fontWeight = Bold,
+        fontSize = 15.sp
+    )
+    Spacer(modifier = Modifier.height(2.dp))
+    TextFieldOutlineRegular(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = "Enter $label",
+        isPassword = isPassword
+    )
+    Spacer(modifier = Modifier.height(12.dp))
 }

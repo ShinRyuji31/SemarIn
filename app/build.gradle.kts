@@ -59,6 +59,7 @@ dependencies {
 
     implementation("io.github.jan-tennert.supabase:supabase-kt:3.6.0")
     implementation("io.github.jan-tennert.supabase:postgrest-kt:3.6.0")
+    implementation("io.github.jan-tennert.supabase:auth-kt:3.6.0")
 
     implementation("io.ktor:ktor-client-okhttp:3.5.0")
 
@@ -66,4 +67,5 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
     implementation("androidx.datastore:datastore-preferences:1.2.1")
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }

@@ -56,6 +56,7 @@ fun AppNavigation(
         is Routes.ProfileRoute -> ProfileScreen(
             onBack = onBack,
             onHomeClick = { onNavigate(Routes.DashBoardRoute) },
+            onLogoutSuccess = { onNavigate(Routes.LandingRoute) },
             onOrderStatusClick = { onNavigate(Routes.AnterOrderStatusRoute) },
             onOrderHistoryClick = { onNavigate(Routes.OrderHistoryRoute) }
         )

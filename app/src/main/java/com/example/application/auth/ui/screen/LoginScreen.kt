@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,7 +16,10 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
+import com.example.application.auth.ui.viewmodel.AuthUiState
+import com.example.application.auth.ui.viewmodel.LoginViewModel
 import com.example.application.global.ui.component.ButtonBlue
 import com.example.application.global.ui.component.ButtonSocial
 import com.example.application.global.ui.component.TextFieldOutlineRegular
@@ -25,18 +29,25 @@ import com.example.application.global.ui.theme.blueWhiteGradient
 @Composable
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
-    onGoToSignUp: () -> Unit
+    onGoToSignUp: () -> Unit,
+    viewModel: LoginViewModel = viewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
 
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    LaunchedEffect(uiState) {
+        if (uiState is AuthUiState.Success) {
+            onLoginSuccess()
+            viewModel.resetState()
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(brush = blueWhiteGradient())
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,11 +59,9 @@ fun LoginScreen(
                 )
                 .padding(horizontal = 20.dp, vertical = 24.dp)
         ) {
-
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 Text(
                     text = "Login",
                     fontSize = 24.sp,
@@ -62,7 +71,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Username",
+                    text = "Email",
                     modifier = Modifier.fillMaxWidth(),
                     fontWeight = Bold,
                     fontSize = 15.sp
@@ -71,9 +80,9 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(2.dp))
 
                 TextFieldOutlineRegular(
-                    value = username,
-                    onValueChange = { username = it },
-                    placeholder = "Enter Username"
+                    value = email,
+                    onValueChange = { email = it },
+                    placeholder = "Enter Email"
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -94,18 +103,24 @@ fun LoginScreen(
                     isPassword = true
                 )
 
+                if (uiState is AuthUiState.Error) {
+                    Text(
+                        text = (uiState as AuthUiState.Error).message,
+                        color = MaterialTheme.colorScheme.error,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(18.dp))
 
                 ButtonBlue(
-                    text = "Log In",
-                    onClick = {
-                        if (username.isNotEmpty() && password.isNotEmpty()) {
-                            onLoginSuccess()
-                        }
-                    },
+                    text = if (uiState is AuthUiState.Loading) "Logging In..." else "Log In",
+                    onClick = { viewModel.login(email, password) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp)
+                        .height(50.dp),
+                    enabled = uiState !is AuthUiState.Loading
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -122,10 +137,8 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     ButtonSocial(icon = R.drawable.logo_google)
                     ButtonSocial(icon = R.drawable.logo_facebook)
-
                 }
 
                 Spacer(modifier = Modifier.height(18.dp))
@@ -133,18 +146,11 @@ fun LoginScreen(
                 Text(
                     text = buildAnnotatedString {
                         append("Don’t have an account? ")
-
-                        withStyle(
-                            style = SpanStyle(
-                                fontWeight = Bold
-                            )
-                        ) {
+                        withStyle(style = SpanStyle(fontWeight = Bold)) {
                             append("Sign Up")
                         }
                     },
-                    modifier = Modifier.clickable {
-                        onGoToSignUp()
-                    },
+                    modifier = Modifier.clickable { onGoToSignUp() },
                     fontSize = 13.sp
                 )
             }

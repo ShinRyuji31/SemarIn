@@ -120,7 +120,7 @@ fun DashboardScreen(
                     ) {
 
                         Text(
-                            text = "Hi ${user?.name ?: "User"} 👋\nNeed Something?",
+                            text = "Hi ${user?.firstName ?: "User"} 👋\nNeed Something?",
 
                             modifier = Modifier.padding(
                                 top = 16.dp,

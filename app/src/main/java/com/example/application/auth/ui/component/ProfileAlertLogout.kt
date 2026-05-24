@@ -21,7 +21,7 @@ import com.example.application.global.ui.theme.BlackSoft
 import com.example.application.global.ui.theme.WhiteSoft
 
 @Composable
-fun ProfileAlertLogut(
+fun ProfileAlertLogout(
     onDismiss: () -> Unit,
     onLogout: () -> Unit
 ) {

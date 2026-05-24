@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -19,10 +20,12 @@ import com.example.application.global.ui.theme.WhiteSoft
 fun ButtonBlue(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     Box(
         modifier = modifier
+            .alpha(if (enabled) 1f else 0.5f)
             .clip(RoundedCornerShape(10.dp))
             .background(
                 brush = Brush.verticalGradient(
@@ -32,7 +35,7 @@ fun ButtonBlue(
                     )
                 )
             )
-            .clickable { onClick() },
+            .then(if (enabled) Modifier.clickable { onClick() } else Modifier),
         contentAlignment = Alignment.Center
     ) {
         Text(text, color = Color.White)

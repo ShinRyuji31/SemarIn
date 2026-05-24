@@ -45,7 +45,7 @@ fun DashboardHeader(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = user.address,
+                text = "Set your location",
                 color = WhiteSoft,
                 fontSize = 14.sp
             )
