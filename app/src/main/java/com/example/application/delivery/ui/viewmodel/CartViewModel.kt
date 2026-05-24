@@ -100,11 +100,8 @@ class CartViewModel(
 
     //Quantity
     fun increaseQuantity(cartId: String) {
-
         viewModelScope.launch {
-
             val updated = _cartItems.value.map { cart ->
-
                 if (cart.id == cartId) {
                     cart.copy(
                         quantity = cart.quantity + 1
@@ -113,19 +110,14 @@ class CartViewModel(
                     cart
                 }
             }
-
             cartRepository.saveCartItems(updated)
         }
     }
 
     fun decreaseQuantity(cartId: String) {
-
         viewModelScope.launch {
-
             val updated = _cartItems.value.mapNotNull { cart ->
-
                 if (cart.id == cartId) {
-
                     val newQty = cart.quantity - 1
 
                     if (newQty <= 0) {
@@ -133,12 +125,10 @@ class CartViewModel(
                     } else {
                         cart.copy(quantity = newQty)
                     }
-
                 } else {
                     cart
                 }
             }
-
             cartRepository.saveCartItems(updated)
         }
     }
@@ -147,7 +137,6 @@ class CartViewModel(
     fun getInventoryById(
         inventoryId: String
     ): StoreInventory? {
-
         return inventories.find {
             it.id == inventoryId
         }
