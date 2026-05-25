@@ -1,6 +1,6 @@
-package com.example.application.global.location
+package com.example.application.global.data.remote.location
 
-import com.example.application.global.location.model.UserLocation
+import com.example.application.global.data.remote.location.model.UserLocation
 
 class LocationRepository(private val locationService: LocationService) {
 

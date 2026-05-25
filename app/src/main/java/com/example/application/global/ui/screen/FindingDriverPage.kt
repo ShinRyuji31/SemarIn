@@ -1,4 +1,4 @@
-package com.example.application.shared.findingdriver.ui.screen
+package com.example.application.global.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

@@ -25,7 +25,7 @@ import com.example.application.global.ui.theme.BlackSoft
 import com.example.application.global.ui.theme.GrayMedium
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.global.util.toRupiah
-import com.example.application.shared.orderstatus.ui.component.OrderStatusDriverDetail
+import com.example.application.global.ui.screen.OrderStatusDriverDetail
 
 @Composable
 fun JajaninOrderStatusPage(

@@ -1,4 +1,4 @@
-package com.example.application.shared.orderstatus.ui.component
+package com.example.application.global.ui.screen
 
 
 import androidx.compose.foundation.Image

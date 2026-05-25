@@ -17,7 +17,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApplicationTheme {
                 val backStack = remember { mutableStateListOf<Routes>(Routes.LandingRoute) }
-                // Use a safe way to get the current route that won't crash during clear()
                 val currentRoute = backStack.lastOrNull() ?: Routes.LandingRoute
                 
                 val repository = remember { UserRepository.getInstance() }
@@ -26,14 +25,12 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(sessionStatus) {
                     when (sessionStatus) {
                         is SessionStatus.Authenticated -> {
-                            // If we are on a guest-only screen, move to dashboard
                             if (backStack.any { it is Routes.LandingRoute || it is Routes.LoginRoute || it is Routes.SignUpRoute }) {
                                 backStack.clear()
                                 backStack.add(Routes.DashBoardRoute)
                             }
                         }
                         is SessionStatus.NotAuthenticated -> {
-                            // If we are on a protected screen, move to landing
                             if (backStack.any { it is Routes.DashBoardRoute || it is Routes.ProfileRoute }) {
                                 backStack.clear()
                                 backStack.add(Routes.LandingRoute)
@@ -47,7 +44,6 @@ class MainActivity : ComponentActivity() {
                     AppNavigation(
                         currentRoute = currentRoute,
                         onNavigate = { newRoute ->
-                            // Simple logic: if navigating to a "root" screen, clear stack
                             if (newRoute is Routes.DashBoardRoute || newRoute is Routes.LandingRoute) {
                                 backStack.clear()
                             }

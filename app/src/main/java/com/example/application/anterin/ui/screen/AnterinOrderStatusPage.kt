@@ -1,8 +1,6 @@
 package com.example.application.anterin.ui.screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -27,7 +25,7 @@ import com.example.application.global.ui.component.Header
 import com.example.application.global.ui.theme.BlackSoft
 import com.example.application.global.ui.theme.GrayMedium
 import com.example.application.global.ui.theme.WhiteSoft
-import com.example.application.shared.orderstatus.ui.component.OrderStatusDriverDetail
+import com.example.application.global.ui.screen.OrderStatusDriverDetail
 
 @Composable
 fun AnterinOrderStatusPage(
