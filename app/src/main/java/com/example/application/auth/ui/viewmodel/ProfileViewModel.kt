@@ -19,7 +19,7 @@ sealed class ProfileUiState {
 }
 
 class ProfileViewModel(
-    private val repository: UserRepository = UserRepository.getInstance()
+    private val repository: UserRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<ProfileUiState>(ProfileUiState.Loading)

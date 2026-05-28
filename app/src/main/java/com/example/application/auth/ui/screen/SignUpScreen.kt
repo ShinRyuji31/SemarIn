@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
 import com.example.application.auth.ui.component.AuthInputField
 import com.example.application.auth.ui.viewmodel.AuthUiState
@@ -23,12 +22,13 @@ import com.example.application.global.ui.component.ButtonBlue
 import com.example.application.global.ui.component.ButtonSocial
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.global.ui.theme.blueWhiteGradient
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignUpScreen(
     onRegisterSuccess: () -> Unit,
     onLoginClick: () -> Unit,
-    viewModel: SignUpViewModel = viewModel()
+    viewModel: SignUpViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()

@@ -7,11 +7,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.anterin.ui.component.AnterinBackground
 import com.example.application.anterin.ui.component.AnterinFormCard
 import com.example.application.global.ui.component.Header
 import com.example.application.anterin.ui.viewmodel.AnterinViewModel
+import org.koin.androidx.compose.koinViewModel
 
 enum class MainMode {
     PICKUP_ONLY,
@@ -24,7 +24,7 @@ fun AnterinMainPage(
     onPickupClick: () -> Unit,
     onDestinationClick: () -> Unit,
     onBack: () -> Unit,
-    viewModel: AnterinViewModel = viewModel()
+    viewModel: AnterinViewModel = koinViewModel()
 ) {
 
     val uiState by viewModel.uiState.collectAsState()

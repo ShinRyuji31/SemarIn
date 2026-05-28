@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.global.ui.component.Header
 import com.example.application.global.ui.component.ButtonBlue
 import com.example.application.global.ui.component.MapWebView
@@ -21,6 +20,7 @@ import com.example.application.global.ui.navigation.Routes
 import com.example.application.anterin.ui.viewmodel.AnterinViewModel
 import com.example.application.global.data.location.LocationViewModel
 import com.example.application.global.ui.component.SearchBar
+import org.koin.androidx.compose.koinViewModel
 
 enum class MapMode {
     PICKUP,
@@ -33,7 +33,7 @@ fun AnterinSearchPage(
     onNavigate: (Routes) -> Unit,
     onBack: () -> Unit,
     viewModel: AnterinViewModel,
-    locationViewModel: LocationViewModel = viewModel()
+    locationViewModel: LocationViewModel = koinViewModel()
 ) {
     val isPickup = mode == MapMode.PICKUP
     val uiState by viewModel.uiState.collectAsState()

@@ -21,12 +21,12 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-class AnterinViewModel : ViewModel() {
-
-    private val repository = AnterinRepository()
-    private val geocodingRepository = GeocodingRepository()
-    private val osrmRepository = OsrmRepository()
-    private val searchRepository = SearchLocationRepository()
+class AnterinViewModel(
+    private val repository: AnterinRepository,
+    private val geocodingRepository: GeocodingRepository,
+    private val osrmRepository: OsrmRepository,
+    private val searchRepository: SearchLocationRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
         AnterinUiState(

@@ -5,7 +5,7 @@ import com.example.application.dashboard.data.model.PromoBanner
 import com.example.application.delivery.data.model.Store
 import com.example.application.delivery.data.repository.StoreRepository
 
-class DashboardRepository {
+class DashboardRepository(private val storeRepository: StoreRepository) {
 
     fun getTopBanners(): List<PromoBanner> {
         return listOf(
@@ -60,7 +60,7 @@ class DashboardRepository {
 
     fun getAffordableRestaurants(): List<Store> {
 
-        return StoreRepository()
+        return storeRepository
             .getStore()
             .sortedByDescending { it.rating }
             .take(3)
@@ -68,7 +68,7 @@ class DashboardRepository {
 
     fun getLastOrderRestaurant(): Store {
 
-        return StoreRepository()
+        return storeRepository
             .getStore()
             .first()
     }

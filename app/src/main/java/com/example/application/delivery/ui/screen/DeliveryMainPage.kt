@@ -14,10 +14,10 @@ import com.example.application.global.ui.component.SearchBar
 import com.example.application.delivery.ui.component.store.StoreCardList
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.delivery.ui.viewmodel.StoreViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.application.delivery.data.model.StoreType
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -25,7 +25,7 @@ fun DeliveryMainPage(
     type: StoreType,
     onBack: () -> Unit,
     onStoreClick: () -> Unit,
-    viewModel: StoreViewModel = viewModel()
+    viewModel: StoreViewModel = koinViewModel()
 ){
 
     val stores by viewModel.stores.collectAsState()

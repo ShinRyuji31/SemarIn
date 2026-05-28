@@ -3,7 +3,7 @@ package com.example.application.auth.data.repository
 import android.util.Log
 import com.example.application.auth.data.model.Customer
 import com.example.application.auth.data.model.User
-import com.example.application.global.data.remote.SupabaseClient
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.auth.status.SessionStatus
@@ -14,21 +14,10 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class UserRepository {
+class UserRepository(supabaseClient: SupabaseClient) {
 
-    companion object {
-        private const val TAG = "UserRepository"
-        private var instance: UserRepository? = null
-        fun getInstance(): UserRepository {
-            if (instance == null) {
-                instance = UserRepository()
-            }
-            return instance!!
-        }
-    }
-
-    private val auth = SupabaseClient.client.auth
-    private val postgrest = SupabaseClient.client.postgrest
+    private val auth = supabaseClient.auth
+    private val postgrest = supabaseClient.postgrest
 
     val sessionStatus: Flow<SessionStatus> = auth.sessionStatus
 
@@ -47,7 +36,7 @@ class UserRepository {
         phoneNumber: String
     ): Result<Unit> {
         return try {
-            Log.d(TAG, "Starting Supabase Auth sign up for: $email")
+            Log.d("UserRepository", "Starting Supabase Auth sign up for: $email")
             
             // 1. Sign up to Supabase Auth
             auth.signUpWith(Email) {
@@ -59,7 +48,7 @@ class UserRepository {
             val userId = auth.currentUserOrNull()?.id 
                 ?: throw Exception("Sign up successful but could not retrieve User ID. Ensure 'Confirm Email' is DISABLED in Supabase.")
 
-            Log.d(TAG, "Auth successful. User ID: $userId. Proceeding to profile insertion...")
+            Log.d("UserRepository", "Auth successful. User ID: $userId. Proceeding to profile insertion...")
 
             val now = getCurrentIsoTimestamp()
 
@@ -78,17 +67,17 @@ class UserRepository {
             val customerProfile = Customer(customerId = userId)
             
             // 4. Insert metadata into 'PROFILE' table
-            Log.d(TAG, "Inserting into 'PROFILE' table...")
+            Log.d("UserRepository", "Inserting into 'PROFILE' table...")
             postgrest.from("PROFILE").insert(userProfile)
             
             // 5. Insert record into 'CUSTOMER' table
-            Log.d(TAG, "Inserting into 'CUSTOMER' table...")
+            Log.d("UserRepository", "Inserting into 'CUSTOMER' table...")
             postgrest.from("CUSTOMER").insert(customerProfile)
             
-            Log.d(TAG, "Registration flow completed successfully.")
+            Log.d("UserRepository", "Registration flow completed successfully.")
             Result.success(Unit)
         } catch (e: Exception) {
-            Log.e(TAG, "Sign up flow failed: ${e.localizedMessage}", e)
+            Log.e("UserRepository", "Sign up flow failed: ${e.localizedMessage}", e)
             Result.failure(e)
         }
     }

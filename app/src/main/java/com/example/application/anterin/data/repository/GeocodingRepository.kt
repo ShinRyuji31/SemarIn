@@ -1,8 +1,6 @@
 package com.example.application.anterin.data.repository
 
 import io.ktor.client.HttpClient
-import io.github.jan.supabase.postgrest.postgrest
-import com.example.application.global.data.remote.SupabaseClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get

@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(
-    private val dashboardRepository: DashboardRepository = DashboardRepository(),
-    private val userRepository: UserRepository = UserRepository.getInstance()
+    private val dashboardRepository: DashboardRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _user = MutableStateFlow<User?>(null)

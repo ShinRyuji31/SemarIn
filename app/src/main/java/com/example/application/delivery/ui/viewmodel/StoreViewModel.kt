@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class StoreViewModel(
-    private val repository: StoreRepository = StoreRepository()
+    private val repository: StoreRepository
 ) : ViewModel() {
 
     private val _stores = MutableStateFlow<List<Store>>(emptyList())

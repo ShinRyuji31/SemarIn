@@ -9,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.anterin.ui.component.destination.AnterinLocationCard
 import com.example.application.anterin.ui.component.destination.AnterinVehicleItem
 import com.example.application.global.ui.component.ButtonBlue
@@ -19,13 +18,14 @@ import com.example.application.global.ui.theme.BluePrimary
 import com.example.application.anterin.ui.viewmodel.AnterinViewModel
 import com.example.application.global.data.location.LocationViewModel
 import com.example.application.global.util.toRupiah
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AnterinDestinationSetPage(
     onBack: () -> Unit,
     onFindDriver: () -> Unit,
     viewModel: AnterinViewModel,
-    locationViewModel: LocationViewModel = viewModel()
+    locationViewModel: LocationViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val locationState by locationViewModel.uiState.collectAsState()

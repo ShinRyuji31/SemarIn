@@ -14,7 +14,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
 import com.example.application.anterin.ui.component.destination.AnterinLocationCard
 import com.example.application.anterin.ui.component.destination.AnterinProgresLine
@@ -27,6 +26,7 @@ import com.example.application.global.ui.theme.GrayMedium
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.global.ui.screen.OrderStatusDriverDetail
 import com.example.application.global.data.location.LocationViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AnterinOrderStatusPage(
@@ -36,7 +36,7 @@ fun AnterinOrderStatusPage(
     onChatClick: () -> Unit = {},
     onOrderHistoryClick: () -> Unit = {},
     viewModel: AnterinViewModel,
-    locationViewModel: LocationViewModel = viewModel()
+    locationViewModel: LocationViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val locationState by locationViewModel.uiState.collectAsState()

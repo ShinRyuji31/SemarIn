@@ -9,8 +9,12 @@ import com.example.application.global.ui.navigation.AppNavigation
 import com.example.application.global.ui.navigation.Routes
 import com.example.application.global.ui.theme.ApplicationTheme
 import io.github.jan.supabase.auth.status.SessionStatus
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+
+    private val userRepository: UserRepository by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,8 +23,7 @@ class MainActivity : ComponentActivity() {
                 val backStack = remember { mutableStateListOf<Routes>(Routes.LandingRoute) }
                 val currentRoute = backStack.lastOrNull() ?: Routes.LandingRoute
                 
-                val repository = remember { UserRepository.getInstance() }
-                val sessionStatus by repository.sessionStatus.collectAsState(SessionStatus.Initializing)
+                val sessionStatus by userRepository.sessionStatus.collectAsState(SessionStatus.Initializing)
 
                 LaunchedEffect(sessionStatus) {
                     when (sessionStatus) {

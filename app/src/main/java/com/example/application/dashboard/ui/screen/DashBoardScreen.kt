@@ -21,12 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.dashboard.ui.component.*
 import com.example.application.dashboard.ui.viewmodel.DashboardViewModel
 import com.example.application.global.data.location.LocationViewModel
 import com.example.application.global.ui.component.SearchBar
 import com.example.application.global.ui.theme.WhiteSoft
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -37,8 +37,8 @@ fun DashboardScreen(
     onJastipinClick: () -> Unit,
     onOrderStatusClick: () -> Unit = {},
     onOrderHistoryClick: () -> Unit = {},
-    viewModel: DashboardViewModel = viewModel(),
-    locationViewModel: LocationViewModel = viewModel()
+    viewModel: DashboardViewModel = koinViewModel(),
+    locationViewModel: LocationViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     val user by viewModel.user.collectAsState()

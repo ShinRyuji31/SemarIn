@@ -1,7 +1,6 @@
 package com.example.application.global.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.anterin.ui.screen.*
 import com.example.application.auth.ui.screen.*
 import com.example.application.dashboard.ui.screen.DashboardScreen
@@ -11,6 +10,7 @@ import com.example.application.orderhistory.ui.screen.OrderHistoryScreen
 import com.example.application.chat.ui.screen.ChatWithDriverPage
 import com.example.application.anterin.ui.viewmodel.AnterinViewModel
 import com.example.application.global.ui.screen.FindingDriverPage
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AppNavigation(
@@ -19,7 +19,7 @@ fun AppNavigation(
     onBack: () -> Unit
 ) {
     // 1. Shared ViewModel for the Anter-In flow
-    val anterinViewModel: AnterinViewModel = viewModel()
+    val anterinViewModel: AnterinViewModel = koinViewModel()
 
     when (currentRoute) {
         // AUTH FLOW

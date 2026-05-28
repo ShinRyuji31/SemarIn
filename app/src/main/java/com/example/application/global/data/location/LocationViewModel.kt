@@ -1,7 +1,6 @@
 package com.example.application.global.data.location
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.application.global.data.location.model.LocationUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,10 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LocationViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val locationService = LocationService(application)
-    private val repository = LocationRepository(locationService)
+class LocationViewModel(
+    private val repository: LocationRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LocationUiState())
     val uiState: StateFlow<LocationUiState> = _uiState.asStateFlow()

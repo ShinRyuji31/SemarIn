@@ -19,19 +19,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.R
 import com.example.application.global.ui.component.Header
 import com.example.application.delivery.ui.component.store.StoreInfoCard
 import com.example.application.delivery.ui.component.inventory.DeliveryInventorySection
 import com.example.application.delivery.ui.viewmodel.StoreViewModel
 import com.example.application.delivery.ui.viewmodel.CartViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun DeliveryDetailPage(
     onBack: () -> Unit,
     onCartClick: () -> Unit,
-    viewModel: StoreViewModel = viewModel()
+    viewModel: StoreViewModel = koinViewModel()
 ) {
     val inventory by viewModel.inventory.collectAsState()
 
@@ -44,7 +44,7 @@ fun DeliveryDetailPage(
         inventory.filter { it.storeId == store.id }
     } ?: emptyList()
 
-    val cartViewModel: CartViewModel = viewModel()
+    val cartViewModel: CartViewModel = koinViewModel()
     val cartItems by cartViewModel.cartItems.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize().background(Color.White)) {

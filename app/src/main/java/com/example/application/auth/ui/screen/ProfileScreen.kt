@@ -17,7 +17,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.application.R
 import com.example.application.auth.ui.component.ProfileAlertLogout
@@ -27,6 +26,7 @@ import com.example.application.auth.ui.viewmodel.ProfileViewModel
 import com.example.application.dashboard.ui.component.DashboardBottomNavBar
 import com.example.application.global.ui.component.BackButton
 import com.example.application.global.ui.theme.blueWhiteGradient
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ProfileScreen(
@@ -35,7 +35,7 @@ fun ProfileScreen(
     onLogoutSuccess: () -> Unit,
     onOrderStatusClick: () -> Unit = {},
     onOrderHistoryClick: () -> Unit = {},
-    viewModel: ProfileViewModel = viewModel()
+    viewModel: ProfileViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     var showLogoutDialog by remember { mutableStateOf(false) }

@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.delivery.ui.component.orderstatus.OrderSummary
 import com.example.application.delivery.ui.viewmodel.CartViewModel
 import com.example.application.dashboard.ui.component.DashboardBottomNavBar
@@ -26,6 +25,7 @@ import com.example.application.global.ui.theme.GrayMedium
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.global.util.toRupiah
 import com.example.application.global.ui.screen.OrderStatusDriverDetail
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun JajaninOrderStatusPage(
@@ -34,7 +34,7 @@ fun JajaninOrderStatusPage(
     onProfileClick: () -> Unit,
     onChatClick: () -> Unit,
     onOrderHistoryClick: () -> Unit = {},
-    viewModel: CartViewModel = viewModel()
+    viewModel: CartViewModel = koinViewModel()
 ) {
 
     val cartItems by viewModel.cartItems.collectAsState()

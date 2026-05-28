@@ -13,17 +13,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.chat.ui.component.ChatBubble
 import com.example.application.chat.ui.component.ChatHeader
 import com.example.application.chat.ui.component.ChatInput
 import com.example.application.chat.ui.viewmodel.ChatViewModel
 import com.example.application.global.ui.theme.WhiteSoft
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ChatWithDriverPage(
     onBack: () -> Unit,
-    viewModel: ChatViewModel = viewModel()
+    viewModel: ChatViewModel = koinViewModel()
 ) {
     val messages by viewModel.messages.collectAsState()
 

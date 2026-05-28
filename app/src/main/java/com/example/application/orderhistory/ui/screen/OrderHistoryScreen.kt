@@ -10,12 +10,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.application.dashboard.ui.component.DashboardBottomNavBar
 import com.example.application.global.ui.component.Header
 import com.example.application.global.ui.theme.WhiteSoft
 import com.example.application.orderhistory.ui.component.OrderHistoryItem
 import com.example.application.orderhistory.viewmodel.OrderHistoryViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun OrderHistoryScreen(
@@ -23,7 +23,7 @@ fun OrderHistoryScreen(
     onHomeClick: () -> Unit,
     onOrderStatusClick: () -> Unit,
     onProfileClick: () -> Unit,
-    viewModel: OrderHistoryViewModel = viewModel(),
+    viewModel: OrderHistoryViewModel = koinViewModel(),
 ) {
     val orders by viewModel.orders.collectAsState()
 

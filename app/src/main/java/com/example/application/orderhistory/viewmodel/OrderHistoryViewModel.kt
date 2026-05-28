@@ -7,8 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class OrderHistoryViewModel : ViewModel() {
-    private val repository = OrderHistoryRepository()
+class OrderHistoryViewModel(
+    private val repository: OrderHistoryRepository
+) : ViewModel() {
 
     private val _orders = MutableStateFlow<List<OrderHistory>>(emptyList())
     val orders: StateFlow<List<OrderHistory>> = _orders.asStateFlow()

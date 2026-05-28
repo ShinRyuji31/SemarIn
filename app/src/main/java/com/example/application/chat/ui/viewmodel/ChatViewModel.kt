@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.update
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ChatViewModel : ViewModel() {
-    private val repository = ChatRepository()
+class ChatViewModel(
+    private val repository: ChatRepository
+) : ViewModel() {
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
     val messages: StateFlow<List<ChatMessage>> = _messages.asStateFlow()

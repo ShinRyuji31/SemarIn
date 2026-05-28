@@ -1,9 +1,7 @@
 package com.example.application.delivery.ui.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.application.delivery.data.local.CartDataStore
 import com.example.application.delivery.data.model.CartItem
 import com.example.application.delivery.data.model.StoreInventory
 import com.example.application.delivery.data.repository.CartRepository
@@ -13,14 +11,9 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 
 class CartViewModel(
-    application: Application
-) : AndroidViewModel(application) {
-
-    private val cartRepository = CartRepository(
-        CartDataStore(application)
-    )
-
-    private val storeRepository = StoreRepository()
+    private val cartRepository: CartRepository,
+    private val storeRepository: StoreRepository
+) : ViewModel() {
 
     private val inventories = storeRepository.getStoreInventory()
 
